@@ -1,0 +1,53 @@
+---
+title: "Edit text files inline"
+description: "Edit SOPs, memos, and other text-based files directly from the Library file preview."
+---
+
+You can edit text-based resources — SOPs, memos, notes, and other plain-text or Markdown files — directly from the Library, without asking an agent to make the change for you. Edits save in place and are recorded in the audit log.
+
+Use inline editing when you want to:
+
+- Fix a typo or update a section in an SOP without leaving the file preview.
+- Rewrite a memo and keep the same resource (so existing references and links still resolve).
+- Make a quick correction that doesn't need an agent in the loop.
+
+## Where inline editing is available
+
+Inline editing is supported wherever the Library renders a text file with a resource header:
+
+- **Full-screen reader** — the page you land on when you open a file from the Library.
+- **Library sidebar detail panel** — the slide-in panel that appears when you select a file in the Library list.
+
+Inline editing is only available for **text-file** resources (for example, SOPs, memos, notes, Markdown, and other plain-text files). Folders, databases, email inboxes, images, and other binary resources don't show the edit control.
+
+You also need write access to the resource. If you're viewing a file you don't own, the edit control is hidden.
+
+## Edit a file
+
+<Steps>
+  <Step title="Open the file">
+    Open the file from the Library, either in the sidebar detail panel or in the full-screen reader.
+  </Step>
+  <Step title="Enter edit mode">
+    Click the pencil icon in the resource header (next to the download and full-screen controls). The header switches to show **Discard** and **Save** buttons, and the file body becomes editable.
+
+    While you're editing, the read-mode actions — download, full-screen toggle, the resource actions menu, and the "updated at" caption — are hidden so the header focuses on the edit controls.
+  </Step>
+  <Step title="Make your changes">
+    Edit the file content directly in the preview. **Save** stays disabled until you've actually changed something.
+  </Step>
+  <Step title="Save or discard">
+    - Click **Save** to write your changes back to the resource. The header returns to read mode and the file preview refreshes.
+    - Click **Discard** to leave edit mode without saving. If you have unsaved changes, you'll be asked to confirm before the draft is thrown away.
+  </Step>
+</Steps>
+
+If you switch to a different file while editing, your draft is discarded — drafts are scoped to a single resource and don't carry over.
+
+## Audit trail
+
+Every inline edit is recorded as an `agent_resource.updated` entry in the audit log, including which fields changed (for example, `content`). You can review these entries the same way as other resource activity.
+
+## Editing from an agent workspace
+
+The agent workspace resource sheet shows the same editor, but because that surface doesn't have a resource header, the **Edit**, **Discard**, and **Save** controls appear as an inline toolbar above the file content instead of in a header. The behavior — including the unsaved-changes confirmation and audit logging — is otherwise identical.
