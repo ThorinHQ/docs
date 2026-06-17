@@ -1,0 +1,52 @@
+---
+title: "Library"
+description: "Browse and manage the resources your agents read and write."
+---
+
+The **Library** is where you organize the data your agents work with: files, folders, inboxes, email sets, and entities. Anything an agent reads or writes — outside of live integrations like Gmail or Slack — lives here.
+
+## Two views
+
+The Library page has two tabs:
+
+- **Projects** — a tree of your [projects](/concepts/projects) with their resources nested inside. Use this view when you want to see "what does this team have access to?"
+- **Entities** — a flat catalog of structured data objects (companies, contacts, deals — whatever your tenant has defined). Use this view to inspect or edit a single record.
+
+<Note>
+  The **Projects** tab is gated behind a rollout flag. If you don't see it, your tenant is still on the entities-only Library; that's expected.
+</Note>
+
+## Resource types
+
+| Type | What it is |
+| --- | --- |
+| **Folder** | A grouping container, like a directory. |
+| **Document** | A free-form text or markdown file the agent can read and update. |
+| **Inbox** | A connected email inbox (Gmail) the agent watches. |
+| **Email set** | A saved query against one or more inboxes — see [Email sets](/concepts/library#email-sets). |
+| **Entity** | A structured record from a connected system (Salesforce object, HRIS record, etc.). |
+
+## Create a folder or entity
+
+Use the **+** button at the top of the tree:
+
+- **New folder** — creates a folder under the current selection.
+- **New entity** — opens the entity creation dialog.
+- **New project / agent / data source** — appears when an admin selects the right scope.
+
+## Email sets
+
+An **email set** is a named filter over one or more inboxes. Use it to give an agent a stable view of a slice of mail — for example, "all emails from `@acme.com`" or "everything tagged `urgent` in the support inbox."
+
+Each email set has:
+
+- **Match conditions** — sender, recipient, subject, label, or thread participants.
+- **Subscriptions** — which agents/responsibilities react when a new message matches.
+- **Prompts** — instructions for what the agent should do with matching messages.
+- **Reprocess** — re-run the matching logic over historical mail (useful after editing conditions).
+
+Email sets unlock the event-driven side of Thorin: when a new email matches, the responsibility subscribed to the set fires automatically.
+
+## Sharing and permissions
+
+Resources are scoped to either a user (personal) or a project (shared). Move a resource between scopes by dragging it in the tree, or right-clicking and choosing **Move**. You can only move resources you have manage rights on.

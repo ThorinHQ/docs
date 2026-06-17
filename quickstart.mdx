@@ -1,47 +1,57 @@
 ---
 title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+description: "Sign in, set up your personal agent, and run your first task."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+This guide takes a brand-new user from zero to a working personal agent. By the end you'll have signed in, granted Thorin access to your email and calendar, and asked your agent to do something useful.
 
 ## Prerequisites
 
-Before you begin, you must have:
+Before you begin, you need:
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+- A Thorin tenant. If your organization isn't onboarded yet, ask your admin or contact Thorin support.
+- A Google Workspace account in a domain that's been configured in your tenant's WorkOS setup.
+- An admin who has granted Thorin permission to your inbox — typically via [domain-wide delegation](/admin/permissions) or [OAuth](/admin/permissions#oauth).
 
 ## Get started
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Sign in">
+    Go to your tenant's Thorin URL (for example, `https://app.thorin.com`) and sign in with Google through WorkOS. The first time you sign in, your **personal agent** is provisioned automatically.
 
-    ```bash
-    npm install your-package
+    If sign-in fails with a permissions error, your account hasn't been added to the Thorin group in WorkOS yet — ask your admin to add you.
+  </Step>
+  <Step title="Confirm your inbox is connected">
+    Open the **Home** page. If your agent is ready, you'll see a chat box. If you see "Personal agent not provisioned," wait a minute and refresh — provisioning runs in the background.
+
+    To verify email access, ask your agent something like:
+
+    ```text
+    Summarize the last 5 emails in my inbox.
     ```
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Configure notifications and inbox watch">
+    Go to **Settings → Notifications** and add a phone number if you want SMS or call alerts. Toggle the channels you want.
 
-    ```bash
-    your-cli init
-    ```
+    Then open **Settings → Inbox Management** and turn on **Inbox Watch** so your agent reacts to new mail in real time. See [Settings](/features/settings) for what each toggle does.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Add a responsibility">
+    A [responsibility](/concepts/responsibilities) is something your agent does on its own. Open **Responsibilities → New** and create one — for example, a daily 8am summary:
 
-    ```bash
-    your-cli start
-    ```
+    - **Trigger:** Cron, `0 8 * * *`
+    - **Instruction:** "Every weekday at 8am, send me a short Slack message with the most important emails from the last 24 hours."
+  </Step>
+  <Step title="Review the result">
+    When the responsibility runs, the result shows up as a [work item](/concepts/work-items). Open **Work Items** to see status, output, and the reasoning the agent used.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## Next steps
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+- Browse the [skills catalog](/concepts/skills) and install ones your agent should be able to use.
+- Connect a [personal MCP server](/integrations/personal-mcps) if you have private tools you want your agent to call.
+- If you handle a lot of inbound email, set up [Switchboard](/features/switchboard) to put a reviewer in front of your inbox.
+
+<Tip>
+  Need help? Reach out to your admin or contact Thorin support at [hi@thorin.com](mailto:hi@thorin.com).
 </Tip>

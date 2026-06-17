@@ -1,0 +1,55 @@
+---
+title: "Settings"
+description: "Personal preferences, inbox controls, notifications, and privacy."
+---
+
+The **Settings** page is where you configure how Thorin treats *you* — your profile, your inbox, how you get notified, and what your agent is allowed to read. Settings are per user, not per tenant.
+
+Click **Edit** in the header to switch into edit mode, change values, and click **Save**.
+
+## Personal
+
+| Field | Notes |
+| --- | --- |
+| **Preferred name** | How agents address you in replies and reports. Defaults to your Workspace display name. |
+| **Timezone** | Used for cron triggers, daily/weekly reports, and any time formatting in agent output. |
+
+## Inbox management
+
+Controls how aggressively your agent watches your mailbox.
+
+- **Inbox Watch** — when enabled, your agent reacts to new mail in real time (used by event-triggered responsibilities and Switchboard). Turning it off pauses all mail-reactive automation for you without deleting any responsibility.
+
+## Notifications
+
+Control how Thorin reaches you when an agent needs your attention or finishes work.
+
+- **Phone number** — required for SMS or phone call notifications. Format as E.164 (`+15551234567`).
+- **Email notifications** — agent-to-you emails (digests, alerts, completed report links).
+- **SMS notifications** — short urgent alerts via text message.
+- **Phone call notifications** — for the highest-priority alerts only.
+
+Each toggle is independent. If you don't see a toggle change immediately, save the form first.
+
+### Reporting frequency
+
+Some agents post a recurring report (daily or weekly). Pick the cadence that matches how often you want to hear from them. Frequency is global — individual responsibilities can still post at custom schedules.
+
+## Privacy
+
+The **Privacy** tab lets you tell Thorin which messages your agent should *never* read, even if Inbox Watch is on.
+
+You can add **keyword denylist** entries: any thread whose subject or body matches the keyword is excluded from agent processing. Use it for personal mail, legal threads, HR conversations, or anything else you want to keep out of automation.
+
+To add denials:
+
+1. Switch to edit mode.
+2. Type one or more keywords in the input (comma-separated).
+3. Click **Add**.
+4. Save the form.
+
+To remove a denial, click **Remove** on the row and save. Pending additions and removals are batched until you save, so you can undo them with the inline **Undo** button before committing.
+
+<Note>
+  Keyword denials are matched case-insensitively against subject and body. They take effect immediately after save — no reindex required.
+</Note>

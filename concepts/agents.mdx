@@ -1,0 +1,63 @@
+---
+title: "Agents"
+description: "Personal and team agents that act on your behalf."
+---
+
+An **agent** is an AI worker in Thorin. It has a name, a role, a set of [skills](/concepts/skills), a set of [resources](/concepts/library) it can read or write, [responsibilities](/concepts/responsibilities) that drive it on a schedule or event, and connections to external systems via [MCP servers](/integrations/personal-mcps).
+
+There are two kinds of agents:
+
+- **Personal agent** — automatically provisioned for every Thorin user on their first sign-in. Scoped to that user, has access to their inbox, calendar, and personal connections. Visible only to the user (and to admins for support purposes).
+- **Team agent** — created by managers or admins under a [project](/concepts/projects). Multiple users on the same project can interact with it, and all members share the agent's skills, resources, and history.
+
+## Where to find agents
+
+| Page | What it shows |
+| --- | --- |
+| **Home** | A chat with your personal agent and a quick view of recent activity. |
+| **All Projects** | Every project (and the agents inside it) you have access to. |
+| **Project → Agents** | Just the agents that belong to a single project. |
+
+## Create an agent
+
+Open **All Projects → New Agent** (or **Library → New Agent**):
+
+1. Give the agent a name.
+2. Pick a **role template**. Roles seed an agent with default instructions, skills, and resources for a job (for example, "Sales Ops Coordinator" or "Recruiting Assistant").
+3. Pick one or more **projects** the agent belongs to.
+4. Click **Create**.
+
+The agent appears in the project's agent list immediately. Open the agent to add skills, responsibilities, and resources.
+
+## Anatomy of an agent
+
+The agent detail panel has these sections:
+
+- **Capabilities** — high-level human description of what the agent does.
+- **Skills** — the [skills](/concepts/skills) the agent can run. Add public skills from the catalog or fork your own.
+- **Resources** — files, folders, and inboxes the agent can read or write. Managed under [Library](/concepts/library).
+- **Responsibilities** — the [responsibilities](/concepts/responsibilities) that drive this agent's autonomous behavior.
+- **Personal MCPs** / **Organization MCPs** — external tool connections. See [Personal MCPs](/integrations/personal-mcps) and [Integrations](/admin/integrations).
+- **History** — a per-session record of every task the agent has run, with reasoning, tool calls, and outputs.
+
+## Chatting with an agent
+
+Click any agent to open a chat. From the chat you can:
+
+- Send free-form messages or `/slash-commands` mapped to skills.
+- Drop in references to files, projects, or other agents using `@` mentions.
+- Open multiple chat tabs in parallel — useful when an agent is mid-task and you want to start another.
+
+Chat history is preserved per agent and visible in the **History** tab.
+
+<Tip>
+  When you `@`-mention a project, the agent picks up the project's shared resources and skills for that turn — without permanently joining the project.
+</Tip>
+
+## Cancelling work
+
+If an agent is stuck on a task you no longer want, open its detail panel and use **Cancel all dispatch tasks** from the overflow menu. This stops every queued or in-flight run for that agent without deleting it.
+
+## Deleting an agent
+
+Use **Delete** from the overflow menu. You can only delete agents you created (or any agent if you're an admin). Deleting an agent removes its responsibilities, history, and chat tabs; resources owned by the agent are released back to the project.

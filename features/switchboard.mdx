@@ -1,0 +1,64 @@
+---
+title: "Switchboard"
+description: "Put a human reviewer in front of a busy inbox so only the right messages reach you."
+---
+
+**Switchboard** routes inbound email through a review step before it ever lands in your primary inbox. A reviewer (you, a delegate, or another team member) sees each message with structured context, decides whether it should reach the recipient, and replies, snoozes, or rejects it.
+
+Switchboard is the right fit when you:
+
+- Get a high volume of cold outreach, intros, or one-off requests.
+- Want to share a single intake link instead of a personal email address.
+- Need an audit trail of every inbound request and how it was handled.
+
+## Set up Switchboard
+
+If your inbox doesn't have a Switchboard yet, the page shows a setup card. Click **Setup my switchboard** and configure:
+
+<Steps>
+  <Step title="Reviewers">
+    Pick the people who can action items in this Switchboard. Reviewers see every incoming thread; the inbox owner is automatically a reviewer.
+  </Step>
+  <Step title="Hold period">
+    How long Switchboard waits before auto-actioning a message that no one has reviewed. Set to `0` to require manual action on every message; set higher to let routine items pass through automatically.
+  </Step>
+  <Step title="Snooze window">
+    The default snooze duration when a reviewer chooses **Snooze** without specifying a time.
+  </Step>
+  <Step title="Slack channels (optional)">
+    Channels where Switchboard posts notifications about new items waiting for review.
+  </Step>
+  <Step title="Routebook">
+    The Routebook is a shared document that captures rules and context for reviewers — for example, "always pass through anything from `@trustedclient.com`" or "snooze cold sales pitches by 30 days." The agent uses the Routebook when suggesting actions.
+  </Step>
+</Steps>
+
+## Review queue
+
+Once set up, the Switchboard page shows two columns:
+
+- **Unactioned** — items waiting for a decision. Each card shows the sender, subject, the agent's recommended action, and reasoning.
+- **Actioned** — recently handled items. Click any card to see what happened and (within the hold period) edit the action.
+
+For each item, a reviewer can:
+
+- **Approve** — pass the message through to the recipient.
+- **Reply** — draft and send a response on the recipient's behalf without forwarding the original.
+- **Snooze** — defer the item until later. Pick a duration with the snooze picker.
+- **Reject** — discard the item with an optional reason.
+- **Edit** — after actioning, modify the response or action while still inside the hold period.
+
+## Contacts and Routebook
+
+The right-side sheet has two tabs:
+
+- **Contacts** — known senders with notes attached. Add a contact to give the reviewer (and the agent) durable context for future messages from that person.
+- **Routebook** — the shared document of routing rules. Edit it any time; new items pick up the changes immediately.
+
+## Settings later
+
+Open the **Settings** icon in the Switchboard header to change reviewers, hold period, snooze window, or Slack channels at any time. To turn Switchboard off entirely, toggle **Skip Switchboard hold** on — incoming messages flow straight through without review.
+
+## Per-inbox isolation
+
+Switchboard settings are per inbox. If you delegate to multiple inboxes, each one has its own reviewers, hold period, and Routebook. Use the inbox switcher at the top of the page to move between them.
