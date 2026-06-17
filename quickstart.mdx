@@ -1,47 +1,57 @@
 ---
 title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+description: "Sign in, connect Gmail, and run your first automation."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+This walkthrough takes a brand-new Thorin user from sign-in to a working personal agent in about ten minutes.
 
 ## Prerequisites
 
-Before you begin, you must have:
+Before you begin, you need:
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+- A Thorin tenant your admin has provisioned for your organization (you'll receive a sign-in link).
+- A Google Workspace account on a domain your admin connected to Thorin.
+- Permission to grant Thorin access to your Gmail inbox during sign-in.
+
+If you don't have a tenant yet, ask your admin to follow the [admin onboarding guide](/admin/onboarding).
 
 ## Get started
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Sign in">
+    Open your tenant URL (typically `https://<your-org>.thorin.com`) and sign in with the SSO provider your admin configured. First-time sign-in walks you through a Google consent screen so Thorin can read and act on your inbox on your behalf.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Confirm your personal agent">
+    After sign-in, Thorin provisions a **personal agent** scoped to your user. Open **Home** in the sidebar to confirm the agent shows up. Your personal agent is the one that reads your inbox and proposes actions in Switchboard.
 
-    ```bash
-    your-cli init
-    ```
+    If Home shows a "Personal agent not provisioned" empty state, refresh the page — provisioning runs asynchronously and usually completes within a few seconds.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Open Switchboard">
+    Click **Switchboard** in the sidebar. Switchboard is where your agent shows you the emails it's about to process and what it plans to do with each one. New tenants start with **review-required** mode — nothing ships until you actively approve it.
 
-    ```bash
-    your-cli start
-    ```
+    See [Switchboard](/concepts/switchboard) for the full review flow.
+  </Step>
+  <Step title="Install a skill">
+    Skills are reusable capabilities — drafting replies, opening Linear issues, summarizing threads — that you snap onto an agent. Open **Skills** in the sidebar and install one from the catalog. Installed skills become available to your personal agent immediately.
+
+    See [Skills](/features/skills) for authoring and installation details.
+  </Step>
+  <Step title="Add your first automation">
+    Open **Automations** in the sidebar and click **New automation**. Pick a trigger — an inbound email matching a filter, a schedule, or a chat message — and write a short instruction telling your agent what to do.
+
+    See [Automations](/features/automations) for trigger types and examples.
+  </Step>
+  <Step title="Connect a personal MCP (optional)">
+    If you use a tool that isn't already connected at the org level, open your personal agent panel and add a [personal MCP server](/integrations/personal-mcps). Thorin handles OAuth on your behalf for servers that support it.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## What's next
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+- Learn how Switchboard, agents, and the inbox pipeline fit together — see [Concepts](/concepts/architecture).
+- Pick up assigned work that agents hand off to humans — see [Assigned Tasks](/features/work-items).
+- If you administer the tenant, set up [email access controls](/admin/email-access) and review the [audit log](/admin/audit-logs).
+
+<Tip>
+  Need help? Reach out to your admin or contact Thorin support at [support@thorin.com](mailto:support@thorin.com).
 </Tip>

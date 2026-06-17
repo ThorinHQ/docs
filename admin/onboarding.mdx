@@ -1,0 +1,62 @@
+---
+title: "Admin onboarding"
+description: "Provision a new Thorin tenant."
+---
+
+This is the short version of the admin's first week with Thorin. Work top to bottom — by the end your team can sign in, connect their inboxes, and start using personal agents.
+
+## First-week checklist
+
+<Steps>
+  <Step title="Set up SSO">
+    Thorin authenticates through [WorkOS](https://workos.com). Configure your organization in your SSO provider and connect it to WorkOS so users on your domain can sign in. Your Thorin contact will share the connection details for your tenant.
+  </Step>
+  <Step title="Grant mail access">
+    Give Thorin permission to read mail for the users who'll have agents. Three options depending on what your domain supports:
+
+    - **Domain-wide delegation** — recommended for Google Workspace tenants who want hands-off enrollment.
+    - **OAuth** — each user authorizes Thorin themselves the first time they sign in.
+    - **Thorin Workspace App** — install the Thorin app from the Google Workspace Marketplace.
+
+    Pick whichever option matches your domain's policies. Your Thorin contact can help you choose.
+  </Step>
+  <Step title="Configure email access">
+    Open **Trust Center → Email Access** and decide how strict Thorin should be:
+
+    - Leave the default `ALLOW_ALL_CONNECTED` mode if you want every connected mailbox to be readable, or
+    - Switch to `EXPLICIT_ALLOWLIST` if only a named set of inboxes should be processed.
+
+    Add deny rules for sensitive senders, domains, or subjects, and enable the **Privileged content** toggle if you want Thorin to skip legal/HR/medical email automatically. See [Email access](/admin/email-access) for the full reference.
+  </Step>
+  <Step title="Install integrations">
+    Connect the tools your team uses:
+
+    - **First-party connectors** — Affinity, Gong, Google Drive, Salesforce, Slack. See [First-party connectors](/integrations/connectors).
+    - **Org MCPs** — install from the built-in catalog (Salesforce, Linear, GitHub, Notion, Sentry, HubSpot, Figma) or by URL. See [Organization MCPs](/integrations/mcps).
+
+    Start with [Integrations overview](/integrations/overview) for the full picture.
+  </Step>
+  <Step title="Set up shared agents">
+    For shared mailboxes (`support@`, `sales@`) and recurring team processes, create shared agents now so they're ready when users sign in. See [Agents](/concepts/agents) for owners, delegates, and resources.
+  </Step>
+  <Step title="Invite your team">
+    Invite teammates from your SSO provider. Once they sign in to Thorin, each user is provisioned a personal agent automatically — no extra setup on the admin side.
+  </Step>
+</Steps>
+
+## After onboarding
+
+<CardGroup cols={2}>
+  <Card title="Trust Center" icon="shield-halved" href="/admin/trust-center">
+    Day-to-day admin surface: users, email access, audit logs.
+  </Card>
+  <Card title="Audit logs" icon="clipboard-list" href="/admin/audit-logs">
+    Inspect every mutating action in your tenant.
+  </Card>
+  <Card title="Email access" icon="envelope-open-text" href="/admin/email-access">
+    Inbox modes, allowlists, and deny rules.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/integrations/overview">
+    Connectors and MCP servers.
+  </Card>
+</CardGroup>

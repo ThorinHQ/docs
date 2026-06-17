@@ -1,0 +1,87 @@
+---
+title: "Automations"
+description: "Triggered work your agent picks up automatically."
+---
+
+An automation is a **responsibility** you assign to an agent — an instruction plus zero or more **triggers** that decide when it runs. The sidebar entry is labeled **Automations**.
+
+Use automations for recurring work you don't want to start by hand: a daily inbox digest, a weekly pipeline review, or a hand-off that should fire whenever a particular email lands.
+
+## Trigger kinds
+
+Every automation has zero or more triggers. The kind of trigger decides how the automation gets started.
+
+### Chat (no trigger)
+
+An automation with no trigger only runs when you invoke it from a chat with the agent. This is useful for capabilities you want available on demand without scheduling.
+
+### Schedule (cron)
+
+A schedule trigger runs the automation on a cron expression. The UI offers presets:
+
+- Hourly
+- Daily
+- Weekdays
+- Weekly
+- Custom cron expression
+
+For a custom expression, the field order is the standard 6-field cron used by [`cron-parser`](https://github.com/harrisiirak/cron-parser):
+
+```bash
+# ┌───────────── second (0 - 59)
+# │ ┌───────────── minute (0 - 59)
+# │ │ ┌───────────── hour (0 - 23)
+# │ │ │ ┌───────────── day of month (1 - 31)
+# │ │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ │ ┌───────────── day of week (0 - 6, Sunday = 0)
+# │ │ │ │ │ │
+  0 0 9 * * 1-5    # 9:00:00 every weekday
+```
+
+<Note>
+  The leading seconds field is required. If you're copying a 5-field crontab line, prepend `0` for seconds.
+</Note>
+
+### Event
+
+An event trigger runs the automation when a matching event fires — for example, an email arriving in a watched mailbox, or a change on a folder, document, or calendar resource attached to the agent. Configure the event source on the trigger when you create the automation.
+
+## Filter the page
+
+The Automations page has a filter bar across the top:
+
+- **All** — every automation on your personal agent.
+- **Event** — only event-triggered automations.
+- **Cron** — only scheduled automations.
+- **Chat** — only chat-invoked automations (no trigger).
+
+## You need a personal agent
+
+Automations live on your [personal agent](/concepts/agents). New users who haven't been provisioned yet see an empty state on the Automations page until their personal agent is created.
+
+## Create an automation
+
+<Steps>
+  <Step title="Open Automations">
+    Click **Automations** in the sidebar.
+  </Step>
+  <Step title="Click New automation">
+    The new automation form opens.
+  </Step>
+  <Step title="Name it">
+    Give the automation a short name. This is what shows up in run history and notifications.
+  </Step>
+  <Step title="Write the instruction">
+    Describe what the agent should do when this automation runs. Be specific about the output you expect.
+  </Step>
+  <Step title="Pick a trigger">
+    Choose **Chat**, **Schedule**, or **Event**. For Schedule, pick a preset or paste a custom cron expression. For Event, configure the event source.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The automation is live; the next matching trigger will start a run.
+  </Step>
+</Steps>
+
+## Runs are sessions
+
+Each time an automation fires, the run shows up as an agent **session**. Open the session to see the agent's reasoning, tool calls, and final output — the same view you get from any other interaction with the agent.

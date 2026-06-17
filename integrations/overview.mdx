@@ -1,0 +1,75 @@
+---
+title: "Integrations overview"
+description: "Connect Thorin to the tools your team already uses."
+---
+
+Thorin reaches outside email through two complementary surfaces: a small set of **first-party connectors** an admin configures once for the whole org, and **MCP servers** that follow the open [Model Context Protocol](https://modelcontextprotocol.io) standard. Together they're how agents read CRM records, post to Slack, file Linear issues, search Notion, and everything in between.
+
+## Where integrations live
+
+- **Admin → Integrations** — admin-managed connectors and **org MCPs**. Anything here is available to every user in the tenant once they authorize their own connection.
+- **Personal agent panel** — **personal MCPs** that are scoped to a single user. See [Personal MCPs](/integrations/personal-mcps).
+
+## Two connection styles
+
+### First-party connectors
+
+Purpose-built integrations Thorin maintains directly. An admin configures each one once, and it becomes available across the org.
+
+| Connector | What it adds |
+| --- | --- |
+| **Affinity** | CRM records pulled from your Affinity workspace. |
+| **Gong** | Call transcripts and metadata. |
+| **Google Drive** | Document access through a shared Drive. |
+| **Salesforce** | Read-only Salesforce records, scoped per user. |
+| **Slack** | Bot access to channels you invite Thorin into. |
+
+See [First-party connectors](/integrations/connectors) for setup details.
+
+### MCP servers
+
+For everything else, Thorin speaks Model Context Protocol. MCP is the standard most modern AI tools use to expose capabilities, and any MCP-compatible service can plug into Thorin without custom integration work.
+
+- **Org MCPs** — installed by an admin from **Admin → Integrations** and exposed to everyone in the tenant. See [Organization MCPs](/integrations/mcps).
+- **Personal MCPs** — added by individual users from their personal agent panel. See [Personal MCPs](/integrations/personal-mcps).
+
+## Built-in MCP catalog
+
+Thorin ships a catalog of preconfigured MCP entries. An admin can install any of these in one click — the URL is filled in for you, and each user authorizes their own connection afterwards.
+
+| Tool | Description |
+| --- | --- |
+| **Salesforce** | CRM accounts, opportunities, and contacts. |
+| **Linear** | Issues, projects, and triage workflows. |
+| **GitHub** | Repos, pull requests, and issues. |
+| **Notion** | Pages, databases, and shared workspaces. |
+| **Sentry** | Error monitoring and issue triage. |
+| **HubSpot** | Marketing, sales, and contact records. |
+| **Figma** | Design files and comments. |
+
+Need something that isn't in the catalog? Add a custom MCP by URL — see [Organization MCPs](/integrations/mcps#add-a-custom-mcp).
+
+## Authentication
+
+Most MCP servers authenticate over OAuth. Thorin uses [Dynamic Client Registration (RFC 7591)](https://datatracker.ietf.org/doc/html/rfc7591) so admins and users don't have to copy client IDs and secrets by hand — Thorin registers itself with the server on the fly and runs an authorization code + PKCE flow.
+
+For servers that don't support OAuth dynamic client registration, paste a long-lived **static access token** as a fallback. Thorin uses it as a bearer credential when calling the server.
+
+Per-user OAuth state stays per-user even for org MCPs: the admin installs the server, but each person on your team signs in to it themselves.
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="First-party connectors" icon="plug" href="/integrations/connectors">
+    Affinity, Gong, Google Drive, Salesforce, and Slack.
+  </Card>
+  <Card title="Organization MCPs" icon="building" href="/integrations/mcps">
+    Install MCP servers for everyone in your org.
+  </Card>
+  <Card title="Personal MCPs" icon="user" href="/integrations/personal-mcps">
+    Add your own MCP servers to your personal agent.
+  </Card>
+  <Card title="Trust Center" icon="shield-halved" href="/admin/trust-center">
+    Audit logs, email access, and user administration.
+  </Card>
+</CardGroup>

@@ -1,0 +1,69 @@
+---
+title: "First-party connectors"
+description: "Affinity, Gong, Google Drive, Salesforce, and Slack."
+---
+
+First-party connectors are integrations Thorin builds and maintains directly, separate from the [MCP](/integrations/mcps) catalog. An admin configures each one once from **Admin → Integrations**, and it becomes available across the org.
+
+This page covers what each connector adds and the headline auth requirement. Configuration UI evolves over time — see the [Integrations overview](/integrations/overview) for the current list of surfaces.
+
+## Affinity
+
+Pulls CRM records from your Affinity workspace so agents can read accounts, organizations, and people without leaving an email thread.
+
+- **Where to configure:** Admin → Integrations → Affinity.
+- **Auth:** Affinity API key, generated from your Affinity admin settings and pasted into the connector dialog.
+
+## Gong
+
+Surfaces call transcripts and metadata so agents can reference what was actually said on a call when answering follow-up email.
+
+- **Where to configure:** Admin → Integrations → Gong.
+- **Auth:** Gong API keys (access key and secret), issued from your Gong admin panel.
+
+## Google Drive
+
+Lets agents read documents from a shared Drive — playbooks, briefs, contracts, anything you want them to cite.
+
+- **Where to configure:** Admin → Integrations → Google Drive.
+- **Setup:**
+  1. Create a shared Drive in Google Workspace.
+  2. Grant Thorin's system user access to that Drive.
+  3. Paste the Drive link into the connector dialog.
+- **Auth:** Workspace-level access via the system user — no per-user OAuth.
+
+## Salesforce
+
+Read-only access to Salesforce records — accounts, opportunities, contacts — scoped to each user's own Salesforce permissions.
+
+- **Where to configure:** Admin → Integrations → Salesforce.
+- **Setup:** Provide a Salesforce **Client ID** from your Salesforce connected app.
+- **Auth:** Per-user OAuth. Each teammate authorizes their own Salesforce account; Thorin reads only what that user can read.
+
+<Tip>
+  If you also want Salesforce write access through MCP, install the **Salesforce** entry from the [MCP catalog](/integrations/mcps#add-from-the-catalog) alongside the first-party connector.
+</Tip>
+
+## Slack
+
+Lets agents post to Slack channels, read recent context, and respond when mentioned.
+
+- **Where to configure:** Admin → Integrations → Slack.
+- **Setup:**
+  1. An admin installs the Thorin Slack app into the workspace.
+  2. Add the Thorin bot to each channel you want it active in.
+- **Auth:** Slack workspace OAuth, granted by the admin during install.
+
+Channel reachability follows Slack's normal rules:
+
+| Channel type | Reachable? |
+| --- | --- |
+| Public channel | Yes — the bot can join any public channel. |
+| Private channel | Only if explicitly invited. |
+| DM | Only if a user opens a DM with the bot. |
+
+## Related
+
+- [Integrations overview](/integrations/overview)
+- [Organization MCPs](/integrations/mcps)
+- [Personal MCPs](/integrations/personal-mcps)
