@@ -1,0 +1,47 @@
+---
+title: "Home and chat"
+description: "Talk to your personal agent and pick up where you left off."
+---
+
+The **Home** page is the default landing page when you sign in to Thorin. It puts your personal agent's chat front and center, plus quick access to your recent activity.
+
+## Chat tabs
+
+Home supports **multiple chat tabs** so you can keep several conversations open without losing state. Each tab has its own agent context, message history, and any pending work items. Tab state is saved to your browser, so closing the page and coming back lands you where you left off.
+
+To open a new tab, click **+** in the tab bar. To close a tab, hover and click the **✕**.
+
+## Slash commands
+
+Start a message with `/` to invoke a [skill](/concepts/skills) directly:
+
+```text
+/draft-followup Hey, can you draft a polite nudge for the Acme thread?
+```
+
+The text after the slug is passed to the skill as input. Slash commands work the same way in any agent chat, not just Home.
+
+## Mentions
+
+Type `@` to attach context to a message:
+
+- `@email-thread` — link a specific email thread the agent should read.
+- `@file` — link a Library file or document.
+- `@project` — pull a project's resources and skills into the conversation for that turn.
+- `@agent` — hand the message off to a different agent without leaving the chat.
+
+Mentions render as inline chips you can click to inspect.
+
+## URL-driven prompts
+
+Home accepts a `prompt=` query param so you can deep-link to pre-filled chats — useful for buttons in Slack or email reports:
+
+```text
+https://app.thorin.com/home?prompt=/daily-summary%20today
+```
+
+The prompt is parsed for slash commands and shown in the input box, ready for the user to send.
+
+## Personal agent not provisioned
+
+If you see "Personal agent not provisioned" on Home, your agent is still being created. This usually takes under a minute on first sign-in. If it persists past five minutes, contact your admin — it usually means a missing WorkOS group mapping or unfinished tenant setup.

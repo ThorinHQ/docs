@@ -1,0 +1,61 @@
+---
+title: "Responsibilities"
+description: "Standing instructions that fire on a schedule, an event, or in chat."
+---
+
+A **responsibility** is a piece of work an agent owns and runs on its own. While [skills](/concepts/skills) describe *what* an agent can do, responsibilities describe *when* and *why* it acts. Each responsibility has a title, a human-readable description, an instruction prompt, and one or more **triggers**.
+
+## Trigger types
+
+| Trigger | When it fires | Typical use |
+| --- | --- | --- |
+| **Cron** | At a fixed schedule (cron expression). | Daily 8am inbox summary, end-of-week status report, hourly health check. |
+| **Event** | When a document or inbox subscription receives new data. | New email in a watched inbox, new row in a connected sheet, new file in a shared drive. |
+| **Chat** | When you ask the agent to run it from chat. | Reusable workflows you keep around but only run on demand. |
+
+A responsibility can have multiple triggers — for example, run nightly *and* when a new sales email arrives.
+
+## Create a responsibility
+
+Open **Responsibilities → New responsibility**:
+
+<Steps>
+  <Step title="Title and description">
+    Give it a short title (shown in the list) and a longer human description that explains the intent.
+  </Step>
+  <Step title="Instruction">
+    Write what the agent should do, in plain language. Reference resources by name — the agent resolves them at run time.
+
+    ```text
+    Every weekday at 8am, look through my inbox for messages from clients
+    that arrived after 5pm yesterday. Summarize the most important ones in
+    a Slack DM to me, grouped by project.
+    ```
+  </Step>
+  <Step title="Triggers">
+    Add a cron trigger, an event subscription, or leave triggers empty for chat-only.
+
+    For cron, use standard 5-field cron syntax (`min hour dom month dow`). For event triggers, pick the document or inbox to subscribe to.
+  </Step>
+  <Step title="Save">
+    Click **Create**. The responsibility starts firing on its next scheduled tick or matching event.
+  </Step>
+</Steps>
+
+## Filter and find responsibilities
+
+The **Responsibilities** page has a filter dropdown for **All / Event / Cron / Chat**, plus a search box that matches title, description, instruction text, and trigger description.
+
+## Editing and pausing
+
+Open a responsibility to:
+
+- Edit the title, description, instruction, or triggers.
+- Disable a trigger to stop firing without losing the responsibility.
+- Delete the responsibility entirely.
+
+Each run produces a [work item](/concepts/work-items) you can inspect.
+
+<Tip>
+  Keep instruction prompts focused on a single outcome. If a responsibility is doing five different things, split it into five smaller responsibilities — they're cheaper to debug and easier to share.
+</Tip>

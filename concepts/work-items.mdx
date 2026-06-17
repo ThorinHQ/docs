@@ -1,0 +1,36 @@
+---
+title: "Work items"
+description: "Track every task an agent has run, is running, or has queued."
+---
+
+A **work item** is the unit of work an agent does — one execution of a [responsibility](/concepts/responsibilities), one chat run, or one ad-hoc task. Each work item has a title, status, priority, assignee, optional due date, and a full reasoning trace.
+
+## Where to find work items
+
+Open the **Work Items** page. The default view is filtered to *your* work items. Use the controls at the top to widen or narrow the list:
+
+- **Status** — `OPEN`, `IN_PROGRESS`, `COMPLETED`, `CANCELLED`, `FAILED`.
+- **Agent** — pick a specific agent.
+- **Assignee** — yourself, another user, or a team.
+- **Priority** — multi-select across `LOW`, `MEDIUM`, `HIGH`, `URGENT`.
+- **Search** — free text across title and description.
+
+Click any column header to sort by **priority**, **due date**, **created**, **completed**, **title**, or **status**.
+
+## Open a work item
+
+Selecting a row opens the detail panel:
+
+- **Summary** — what the agent was asked to do and what it produced.
+- **Status timeline** — when it was created, started, completed, or failed.
+- **Reasoning** — the agent's step-by-step trace, including tool calls and intermediate outputs.
+- **Linked resources** — emails, files, or external records the work item touched.
+- **Comments** — back-and-forth between you and the agent or other reviewers.
+
+## Per-project view
+
+A project's **Work Items** tab shows the same data scoped to that project's agents. Use it to spot bottlenecks or stuck work for a single team.
+
+## URLs that filter
+
+Filter state is encoded in the URL, so you can share a link to a specific view — for example, "all my urgent open items" or "all completed items from the recruiting agent last week."

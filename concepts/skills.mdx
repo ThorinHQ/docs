@@ -1,0 +1,66 @@
+---
+title: "Skills"
+description: "Reusable, named capabilities that agents can run on demand."
+---
+
+A **skill** is a packaged capability — a prompt, a set of tools, and instructions — that an agent can invoke. Skills are the building blocks of what an agent can *do*, the same way [responsibilities](/concepts/responsibilities) define when it acts.
+
+Examples:
+
+- "Draft a follow-up email" — takes a thread, returns a draft reply.
+- "Summarize this meeting" — takes a transcript, returns bullet points.
+- "Create a Salesforce opportunity from this email" — extracts data from a thread and creates a record.
+
+## Where to find skills
+
+Open the **Skills** page. You'll see three groups:
+
+| Group | What it contains |
+| --- | --- |
+| **My skills** | Skills you own and can edit. |
+| **Installed** | Read-only skills you've added from the catalog. |
+| **Catalog** | Published skills available to your tenant. |
+
+Use the search box at the top to filter by name, description, owner, or any user the skill is shared with.
+
+## Install a skill
+
+1. On the **Skills** page, find the skill in the **Catalog**.
+2. Click the skill card to open its detail view.
+3. Click **Install**. The skill moves into your **Installed** group and your personal agent can use it immediately.
+
+To install a skill on a non-personal agent, open the agent's detail panel, go to **Skills**, and click **+** to pick from the catalog.
+
+## Fork a skill
+
+If you want to customize a public skill, fork it:
+
+1. Open the skill detail.
+2. Click **Fork**. A new editable copy lands in **My skills**.
+3. Edit the prompt, instructions, and tool list, then save.
+
+Forks are independent — upstream changes don't propagate.
+
+## Create a skill
+
+From **Skills → Create**:
+
+1. Name the skill. Skill names must be unique inside your tenant; the picker will warn you if a name is already taken.
+2. Write a short description. Agents see this when deciding whether to invoke the skill.
+3. Write the instruction prompt. Use second-person voice ("you") for the agent.
+4. Pick which tools the skill can call (Gmail, Calendar, Drive, MCP servers, etc.).
+5. Save and publish to your tenant catalog when you're ready.
+
+## Slash commands
+
+Every skill is reachable from chat as a slash command. In any agent chat, type `/` followed by the skill slug:
+
+```text
+/draft-followup Hey, we should circle back on the pricing thread from last week.
+```
+
+The agent runs the matching skill with the rest of the message as input.
+
+## Built-in skills
+
+Some skills are marked **built-in** and cannot be removed from an agent — they implement core behaviors like reading email or fetching files. They show in the agent's skill list but don't appear in the catalog.

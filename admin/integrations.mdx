@@ -1,0 +1,69 @@
+---
+title: "Integrations"
+description: "Connect Thorin to the systems your team already uses."
+---
+
+The **Admin → Integrations** page is where admins connect Thorin to the third-party systems agents need to read from and write to. Integrations are tenant-wide: once an admin connects them, every agent in the tenant can use them (subject to the agent's skill list).
+
+This is different from [Personal MCPs](/integrations/personal-mcps), which are scoped to a single user.
+
+## Available integrations
+
+| Integration | What it unlocks | Auth |
+| --- | --- | --- |
+| **Gmail and Calendar** | Reading email, drafting replies, scheduling, calendar awareness. | Service-account [domain-wide delegation](/admin/permissions) or per-user OAuth. |
+| **Google Drive** | Reading and writing files in shared drives. | Per-shared-drive grant to Thorin's system user. |
+| **Slack** | Reading and posting in channels (public; private requires explicit invite). | Workspace OAuth grant by a Slack admin. |
+| **Affinity** | CRM read/write for VC and dealflow workflows. | API key. |
+| **Gong** | Pulling call recordings and transcripts. | API key. |
+| **Salesforce** | Read-only access to records. | OAuth — requires a Salesforce Client ID supplied by your admin. |
+| **MCP servers** | Generic tool servers that speak [Model Context Protocol](https://modelcontextprotocol.io). | OAuth (preferred) or static token. |
+
+## Connect an integration
+
+<Steps>
+  <Step title="Open Admin → Integrations">
+    You need the `ADMIN` tenant role. The page shows one card per integration with current status.
+  </Step>
+  <Step title="Click Connect on the relevant card">
+    A dialog walks you through the auth flow specific to that integration. For OAuth integrations you'll be redirected to the provider and back; for API-key integrations, paste the key in the dialog.
+  </Step>
+  <Step title="Verify">
+    Once connected, the card shows a green status. Use **Test** (where available) to confirm the connection works end-to-end.
+  </Step>
+</Steps>
+
+### Gmail and Calendar
+
+Two ways to grant Thorin access to mail and calendar:
+
+- **Domain-wide delegation** (recommended). One-time setup by a Google Workspace admin. Grants Thorin's service account access to every user's Gmail and Calendar. See [Permissions](/admin/permissions).
+- **Per-user OAuth**. Each user signs in to Thorin and grants OAuth scopes themselves. Tokens periodically expire and require re-auth.
+
+### Google Drive
+
+Drive integration is per shared drive:
+
+1. Create a Google Shared Drive (or pick an existing one).
+2. Share it with Thorin's system user (the dialog shows the address).
+3. Paste the drive's link into the dialog and click **Save**.
+
+### Slack
+
+A Slack admin clicks **Connect Slack** and approves the requested scopes. Then add the Thorin bot to any channel — public or private — you want it to read and post in. Public channels can be discovered by the bot automatically; private channels must be invited explicitly.
+
+### MCP servers (Organization MCPs)
+
+Add a tenant-wide MCP server from **Integrations → Add MCP Server**:
+
+1. Enter a name and the server's HTTPS URL.
+2. Choose **OAuth** (preferred) or paste a static bearer token.
+3. Click **Add**.
+
+Each user then connects themselves from the **Organization MCPs** section of their personal agent. See [Personal MCPs](/integrations/personal-mcps) for the user-side flow.
+
+## Disconnect or rotate
+
+Use **Disconnect** on any card to revoke Thorin's access. For API-key integrations, rotating the key in the source system breaks the connection until you paste the new key in.
+
+Disconnecting is non-destructive — agent definitions and history are preserved, but any responsibility that depends on the integration will fail until it's reconnected.

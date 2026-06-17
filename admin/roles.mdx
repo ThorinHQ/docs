@@ -1,0 +1,43 @@
+---
+title: "Roles and permissions"
+description: "Tenant-level authorization roles and what each one can do."
+---
+
+Thorin uses tenant-level **authorization roles** to decide who can configure what. Roles are assigned through your identity provider (WorkOS) — Thorin reads them on each sign-in and never lets a user grant themselves a higher role from inside the app.
+
+## Roles
+
+| Role | What it can do |
+| --- | --- |
+| **MEMBER** | Use whatever has been configured for them — chat with their personal agent, run installed skills, see their own work items. No configuration powers. |
+| **MANAGER** | Everything `MEMBER` can do, plus create and edit agents, skills, responsibilities, projects, and resources. The right role for team leads who run a project. |
+| **ADMIN** | Everything `MANAGER` can do, plus configure tenant-wide settings, integrations, MCP connectors, email access policies, and audit logs. |
+
+## Support roles (Thorin staff only)
+
+These roles are granted only to Thorin staff helping with onboarding or support, and never to customer users:
+
+| Role | What it does |
+| --- | --- |
+| **THORIN_SUPPORT** | Like `MANAGER`, with extra read-only powers useful for troubleshooting. |
+| **THORIN_SUPPORT_ADMIN** | Like `ADMIN`, used for initial tenant setup and admin-level help. |
+
+If you ever see a Thorin Support user listed in your tenant, it's because they're actively helping you. Contact your CSM if you'd like the access reviewed or removed.
+
+## How role mapping works
+
+Thorin doesn't expose a "make this user an admin" button. Roles are mapped from **WorkOS Directory Sync groups**:
+
+1. In Google Workspace (or your identity provider), create a group — for example, `Thorin Admins`.
+2. In WorkOS, map that group to the `ADMIN` role.
+3. Add or remove users in the group through normal Workspace administration.
+
+Only **groups** can be mapped to roles, not individual users. We recommend creating a single dedicated group per role and managing membership there.
+
+<Tip>
+  Most tenants only need two groups: one for `ADMIN` (a small set of platform owners) and one for `MANAGER` (team leads who run projects). Everyone else gets `MEMBER` automatically.
+</Tip>
+
+## Project-level roles
+
+Inside a [project](/concepts/projects), you can also assign **project-level** member roles (Member, Manager, Admin). These are independent from the tenant role: someone can be a tenant `MEMBER` and still be a project Admin for one specific project. Tenant roles always win — a tenant `ADMIN` is implicitly an admin on every project.

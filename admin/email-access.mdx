@@ -1,0 +1,71 @@
+---
+title: "Email access policies"
+description: "Tenant-level allow and deny rules that decide which mail Thorin processes."
+---
+
+The **Admin → Email Access** page lets admins define tenant-wide rules for which mailboxes and which messages Thorin is allowed to read. Use it to enforce data-handling policies (for example, "never read messages from `@legal.example.com`") at the tenant level — independently of what individual users do in their own [Privacy settings](/features/settings).
+
+You need the `ADMIN` role to view or edit this page.
+
+## Allowed inboxes
+
+The **Allowed inboxes** list controls which user mailboxes Thorin watches at all. By default, every user in a WorkOS-mapped group has their inbox watched (subject to their personal **Inbox Watch** toggle). Admins can:
+
+- **Allow specific inboxes** — restrict Thorin to a subset of the org. Anyone not in the list is excluded entirely.
+- **Allow groups** — match a Workspace group instead of individual addresses.
+
+Click **Add allowed inbox** to add a user or group. Click the trash icon next to an entry to remove it.
+
+<Note>
+  Removing an allowed inbox stops new processing immediately, but historical work items and messages already indexed are not deleted. Contact Thorin support if you need data removed retroactively.
+</Note>
+
+## Deny rules
+
+Deny rules apply on top of the allowed-inbox list. A message is processed only if its inbox is allowed *and* none of the deny rules match.
+
+Each deny rule has:
+
+- **Match kind** — what part of the message is matched (sender domain, sender address, subject keyword, recipient).
+- **Value** — the literal string to match.
+- **Reason** — an optional note shown in audit logs.
+
+Common patterns:
+
+- **Block a sensitive domain.** Sender domain = `legal.example.com`.
+- **Block HR threads.** Recipient = `hr@yourcompany.com`.
+- **Block a keyword.** Subject keyword = `[CONFIDENTIAL]`.
+
+### Add a deny rule
+
+<Steps>
+  <Step title="Click Add deny rule">
+    Opens the rule modal.
+  </Step>
+  <Step title="Pick a match kind">
+    Choose what to match against.
+  </Step>
+  <Step title="Enter the value">
+    Free-form, case-insensitive. Enter one value per rule — add multiple rules for multiple values.
+  </Step>
+  <Step title="Add a reason (optional)">
+    Helpful for future admins reviewing the rule.
+  </Step>
+  <Step title="Save">
+    The rule takes effect immediately. New mail matching it is dropped before any agent sees it.
+  </Step>
+</Steps>
+
+## How it interacts with user privacy
+
+Email access policies are a *floor*, not a ceiling. A user can still add their own [keyword denials](/features/settings) in **Settings → Privacy** to block additional content — but they cannot allow access to anything the tenant policy denies.
+
+Order of precedence:
+
+1. **Tenant deny rule** — if any rule matches, the message is dropped.
+2. **User keyword denial** — if any user-level denial matches, the message is dropped for that user.
+3. **Allowed inbox** — if neither denial matched and the inbox is allowed, the message is processed.
+
+## Audit logs
+
+Open **Admin → Control Panel → Audit Logs** to see who changed which rule and when. Every add, edit, and remove action on this page is logged with the actor's user ID and timestamp.

@@ -1,0 +1,78 @@
+---
+title: "Granting Thorin access to your data"
+description: "Domain-wide delegation, OAuth, and the trade-offs between them."
+---
+
+Thorin reads email, calendar, and (optionally) Drive on behalf of your users. For an admin, there are two ways to grant that access. This page explains the trade-offs and the exact steps for each.
+
+## Option 1: Domain-wide delegation (recommended)
+
+Domain-wide delegation gives Thorin's service account permission to act on behalf of any user in your Google Workspace, governed by the WorkOS group mapping you've already set up. It's a one-time admin action — users never see an OAuth screen.
+
+### Why we recommend it
+
+- **No per-user re-auth.** OAuth tokens expire; service-account access doesn't. Responsibilities keep firing without interruption.
+- **No user friction.** Members can use Thorin the moment they're added to the WorkOS group.
+- **One audit point.** Access is governed in the Workspace Admin console, not on individual user accounts.
+
+### Set it up
+
+A Google Workspace **Super Admin** does this once:
+
+<Steps>
+  <Step title="Open the API Controls page">
+    Navigate to **Workspace Admin → Security → API Controls**.
+  </Step>
+  <Step title="Open domain-wide delegation">
+    Click **Manage Domain Wide Delegation** → **Add new**.
+  </Step>
+  <Step title="Add Thorin's client">
+    Use:
+
+    - **Client ID:** `111379422957677542946`
+    - **OAuth scopes:**
+
+      ```text
+      https://www.googleapis.com/auth/gmail.modify
+      https://www.googleapis.com/auth/pubsub
+      https://www.googleapis.com/auth/calendar.events
+      https://www.googleapis.com/auth/calendar.calendarlist.readonly
+      ```
+  </Step>
+  <Step title="Save">
+    Save the entry. Thorin can now act on Gmail and Calendar for any user in the WorkOS-mapped groups.
+  </Step>
+</Steps>
+
+<Note>
+  Domain-wide delegation grants Gmail and Calendar access only. Drive access is configured separately on each shared drive — see [Integrations](/admin/integrations).
+</Note>
+
+## Option 2: Per-user OAuth
+
+If your security team won't approve domain-wide delegation, fall back to OAuth: each user grants Thorin access individually on their first sign-in.
+
+### Trade-offs
+
+- **More friction.** Every user sees the consent screen and must approve scopes.
+- **Tokens expire.** Google rotates refresh tokens; users periodically have to sign in again, and any responsibility running while the token is expired will fail until they do.
+- **Test-user list.** Until Thorin's OAuth app finishes Google's verification process, your users must be added to a test-user list maintained by Thorin support. Contact your CSM to add users.
+
+### How it works
+
+1. User opens your Thorin URL and signs in with Google.
+2. Google shows the consent screen with the requested scopes.
+3. User clicks **Allow**.
+4. Thorin stores the refresh token and starts using it for that user only.
+
+When the token expires, the user gets prompted to reconnect on their next visit. If they don't, agent runs that depend on Gmail or Calendar will surface a `RECONNECT_REQUIRED` error in [Work Items](/concepts/work-items).
+
+## Switching from OAuth to domain-wide delegation
+
+Existing OAuth grants keep working alongside domain-wide delegation — the service account is preferred when both are present. To clean up:
+
+1. Roll out domain-wide delegation.
+2. Wait a few days to confirm everything is working.
+3. Have users revoke the OAuth grant from their Google account if they want to clean up the consent.
+
+No data migration is needed.

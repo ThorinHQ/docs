@@ -1,0 +1,37 @@
+---
+title: "Control panel"
+description: "Tenant-wide configuration, audit logs, and per-user overrides."
+---
+
+The **Admin → Control Panel** is the admin-only home for tenant configuration that doesn't fit cleanly into Integrations or Email Access. You need the `ADMIN` role to open it.
+
+## Sections
+
+### User config
+
+The user-config tab lists every user in the tenant with their current authorization role and any per-user overrides. Use it to:
+
+- See who is currently a `MEMBER`, `MANAGER`, or `ADMIN`.
+- Apply an override (for example, force a user into read-only mode) without changing their WorkOS group membership.
+- Revoke an override later.
+
+Roles themselves are still mapped from WorkOS groups — see [Roles](/admin/roles). Overrides are an escape hatch for special cases.
+
+### Email access
+
+A shortcut into [Email access policies](/admin/email-access). The Control Panel surface gives you a quick at-a-glance summary of how many allowed inboxes and deny rules are active.
+
+### Audit logs
+
+A chronological feed of admin actions across the tenant:
+
+- Role changes and overrides.
+- Integration connect/disconnect events.
+- Email access policy changes.
+- MCP server adds and removals.
+
+Filter by actor, action type, or date range. Logs are retained per your tenant's data-retention policy.
+
+<Tip>
+  Pull audit logs before any compliance review. They're the canonical record of who configured what.
+</Tip>
