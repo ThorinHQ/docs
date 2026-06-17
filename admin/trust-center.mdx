@@ -1,0 +1,62 @@
+---
+title: "Trust Center"
+description: "Email access policies, audit logs, and user administration."
+---
+
+Trust Center is the admin surface for everything that controls what Thorin reads, who can do what, and what changed. It lives at **Admin → Trust Center** in the sidebar and is only visible to users with the admin role.
+
+## Tabs
+
+Trust Center splits into three tabs.
+
+### Users
+
+Per-user configuration for everyone in the tenant. The list shows each member, their role, and tenant membership at a glance. Click a row to open a detail panel with deeper settings — including the user's personal agent, connected mailboxes, and any per-user policy overrides.
+
+Use the Users tab when you need to:
+
+- Inspect or adjust a single teammate's setup.
+- See a user's personal agent without switching accounts.
+- Change a user's role or remove them from the tenant.
+
+### Email Access
+
+Inbox mode, allowlist, and deny rules. This is where you decide which mailboxes Thorin reads and which messages it skips.
+
+The full reference lives at [Email access](/admin/email-access).
+
+#### Privileged content protection
+
+A toggle in the Email Access tab. When enabled, Thorin runs incoming messages through a classifier and skips anything labelled privileged — legal, HR, medical, and similarly sensitive content. The skipped messages never enter Thorin's processing pipeline.
+
+This is the safest default for tenants that mix executive and operational mail in the same inboxes.
+
+### Audit Logs
+
+Every mutating action by a user, agent, or system actor lands here. Filter by:
+
+- **Actor type** — user, agent, or system.
+- **Specific actor** — a member picker for the chosen type.
+- **Resource type** — agent, integration, automation, policy, and so on.
+- **Free-text query** — searches across summaries and resource ids.
+
+The table uses infinite scroll, so older entries load as you scroll down.
+
+See [Audit logs](/admin/audit-logs) for the full reference.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Email access" icon="envelope-open-text" href="/admin/email-access">
+    Inbox modes, allowlists, and deny rules.
+  </Card>
+  <Card title="Audit logs" icon="clipboard-list" href="/admin/audit-logs">
+    Inspect every mutating action in your tenant.
+  </Card>
+  <Card title="Admin onboarding" icon="rocket" href="/admin/onboarding">
+    Provision a new Thorin tenant.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/integrations/overview">
+    First-party connectors and MCP servers.
+  </Card>
+</CardGroup>

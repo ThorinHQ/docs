@@ -1,0 +1,54 @@
+---
+title: "How Thorin works"
+description: "The pieces that turn your inbox into AI-driven work."
+---
+
+Thorin sits in front of your team's email and turns each incoming message into a decision: ignore it, propose an action for a human to review, or ship the work automatically. This page walks through the pipeline at a high level so you can see how the parts fit together before diving into individual features.
+
+## The pipeline
+
+<Steps>
+  <Step title="Email arrives in a connected inbox">
+    A message lands in a Gmail mailbox you've connected to Thorin — your personal inbox or a shared mailbox like `support@` or `sales@`. Thorin sees the new thread through the Gmail integration.
+  </Step>
+  <Step title="The email pipeline ingests and classifies it">
+    Thorin pulls in the message, normalizes its content, and classifies it. Each thread is matched against active **automations** and **email-set filters** to decide which agents (if any) should look at it.
+  </Step>
+  <Step title="An agent proposes work">
+    The matched agent reasons over the thread using its installed [skills](/features/skills), connected [MCP servers](/integrations/personal-mcps), [integrations](/integrations/overview), and the documents and entities in your [Library](/features/library). It produces a proposed action — a reply draft, a routing decision, a ticket to open, a record to update.
+  </Step>
+  <Step title="Switchboard reviews or ships it">
+    Depending on the agent's review settings, the action either lands in [Switchboard](/concepts/switchboard) for a human to approve or edit, or it ships automatically and is logged for audit.
+  </Step>
+  <Step title="Hand off to a human if needed">
+    When the agent decides a person should take it from here, it creates a **Work Item** or **Assigned Task** for the right human, with the context they need to finish the job.
+  </Step>
+</Steps>
+
+## What the agent draws on
+
+Each agent acts through a small toolbox:
+
+- **Skills** — reusable capabilities (draft a reply, open a ticket, update a CRM record).
+- **MCP servers** — Model Context Protocol connectors that expose external tools.
+- **Integrations** — first-party connectors for Gmail, Salesforce, Linear, Slack, and others.
+- **Resources** — documents, entities, and projects from the Library that the agent is allowed to read.
+
+See [Agents](/concepts/agents) for how owners, delegates, and contacts shape what an agent can do.
+
+## Cross-cutting surfaces
+
+A few surfaces cut across every part of the pipeline:
+
+- **Library** — the canonical store of entities, projects, and documents agents reference when reasoning about work.
+- **Trust Center** — admin controls for email access, privileged-content protection, audit logs, and per-user configuration.
+- **Adoption** — usage and outcome insights so you can see where agents are saving time and where they need tuning.
+
+<CardGroup cols={2}>
+  <Card title="Agents" icon="robot" href="/concepts/agents">
+    Personal and shared agents, owners, delegates, contacts, and resources.
+  </Card>
+  <Card title="Switchboard" icon="filter" href="/concepts/switchboard">
+    Review what your agent wants to do before it ships.
+  </Card>
+</CardGroup>

@@ -1,0 +1,54 @@
+---
+title: "Audit logs"
+description: "Inspect every mutating action in your tenant."
+---
+
+Audit logs capture every action that changed persisted state in your Thorin tenant — who did it, what they touched, and when. They live at **Admin → Trust Center → Audit Logs** and are visible only to admins.
+
+## What gets logged
+
+Any user-, agent-, or system-initiated action that mutates state shows up here. That includes:
+
+- Configuration changes (email access mode, deny rules, role changes).
+- Integration installs, updates, and removals.
+- Automation edits and skill changes.
+- Agent and resource updates.
+- User invites, role assignments, and removals.
+
+Read-only actions — viewing a thread, opening Switchboard — are not logged.
+
+## What each entry shows
+
+| Field | Meaning |
+| --- | --- |
+| **Timestamp** | When the action happened. |
+| **Actor** | Who initiated it: a user, an agent, or the system. |
+| **Resource type** | What kind of thing was changed (agent, integration, policy…). |
+| **Resource id** | The specific record that was touched. |
+| **Action** | The verb — `create`, `update`, `delete`, and friends. |
+| **Summary** | A human-readable line describing the change. |
+
+## Filtering
+
+The toolbar above the table lets you narrow the view by:
+
+- **Actor type** — user, agent, or system.
+- **Specific actor** — a member picker scoped to the actor type you chose.
+- **Resource type** — only show changes to a particular kind of record.
+- **Free-text search** — matches across summaries and resource ids.
+
+Filters compose, so you can ask for "every change agent X made to integrations last week" by combining actor + resource type + the date implied by where you scroll.
+
+## Infinite scroll
+
+The table loads in pages. Older entries appear automatically as you scroll down — there are no page numbers to click through.
+
+<Tip>
+  Pair audit logs with [email access](/admin/email-access) policies when investigating a delivery you didn't expect. The audit trail tells you what changed and when; the email access policy tells you what Thorin was allowed to read at that moment.
+</Tip>
+
+## Related
+
+- [Trust Center](/admin/trust-center)
+- [Email access](/admin/email-access)
+- [Admin onboarding](/admin/onboarding)
