@@ -108,6 +108,12 @@
         "pages": [
           "changelog/overview"
         ]
+      },
+      {
+        "group": "Library",
+        "pages": [
+          "library/edit-text-files"
+        ]
       }
     ]
   },
