@@ -1,0 +1,127 @@
+---
+title: "Switchboard"
+description: "Use Thorin Switchboard to review, route, and manage inbound email decisions."
+---
+
+Switchboard is a workflow for screening and routing inbound email. It combines routebook rules, contact decisions, reviewer settings, and an agent review UI.
+
+Use Switchboard when email needs structured triage before it reaches a person or inbox.
+
+## Mental model
+
+Switchboard is a controlled decision workflow.
+
+1. An inbound thread arrives.
+2. Switchboard screens the sender or contact.
+3. Switchboard checks the routebook.
+4. The agent suggests a decision.
+5. A reviewer submits a decision.
+6. Switchboard routes, blocks, whitelists, marks private, or leaves the sender unknown.
+7. Switchboard records the completed decision.
+
+The goal is to keep important messages moving while preventing unknown, private, low value, or misrouted messages from reaching the wrong place.
+
+## What users can do
+
+In Switchboard, users can:
+
+- Set up the switchboard for their inbox.
+- Search messages and completed messages.
+- Review email threads.
+- Screen unknown senders.
+- Whitelist, mark private, block, or leave senders unknown.
+- Route email to one time recipients, inboxes, nobody, or routebook routes.
+- Add forwarding notes.
+- Submit decisions.
+- Modify completed decisions.
+- Manage routebook routes.
+- Manage contacts and reviewers.
+
+## Setup path
+
+<Steps>
+  <Step title="Open Switchboard">
+    Go to Switchboard. If setup is not complete, use Set up my switchboard.
+  </Step>
+  <Step title="Configure inboxes">
+    Select the inboxes that should be reviewed.
+  </Step>
+  <Step title="Add reviewers">
+    Configure who can review and submit routing decisions.
+  </Step>
+  <Step title="Set routebook rules">
+    Add routes for known sender types, teams, or topics.
+  </Step>
+  <Step title="Configure settings">
+    Review reviewers, notification settings, snooze behavior, and inbox specific routing controls.
+  </Step>
+  <Step title="Review unknown senders">
+    Decide whether each sender should be whitelisted, private, blocked, or left unknown.
+  </Step>
+  <Step title="Inspect completed decisions">
+    Use completed message search to audit and modify prior decisions when needed.
+  </Step>
+</Steps>
+
+## Routing decisions
+
+Use clear decision types:
+
+| Decision | Use it when |
+| --- | --- |
+| Whitelist sender | Future messages from this sender can be trusted. |
+| Mark private | The thread should not be routed broadly. |
+| Block sender | The sender should be blocked from future routing. |
+| Leave unknown | There is not enough information yet. |
+| Route to recipient or inbox | A known person or inbox should receive the thread. |
+| Route to nobody | The message does not need forwarding. |
+| Routebook route | A reusable routing rule applies. |
+
+## Routebook
+
+The routebook is the reusable routing memory for Switchboard. Use it for sender classes, topics, or recurring patterns that should not require a fresh decision every time.
+
+Good routebook entries are specific:
+
+- "Portfolio founder intros go to the Portfolio Ops inbox."
+- "Known LP admin notices go to the Fund Admin inbox."
+- "Recruiting agency outreach goes to Recruiting review."
+- "Personal and private senders stay out of shared routes."
+
+Avoid broad rules such as "all investors" or "all customer emails" unless the destination is truly correct for every matching thread.
+
+## Contacts
+
+Contacts help Switchboard distinguish known senders from unknown senders. When reviewing contacts, users can whitelist, mark private, block, or leave unknown. These decisions should be conservative because they affect future routing behavior.
+
+## Completed decisions
+
+Completed message search is the audit surface. Use it to answer these questions.
+
+- Why did this thread route here?
+- Which reviewer made the decision?
+- Was the sender whitelisted, blocked, private, or unknown?
+- Did a routebook rule apply?
+- Should a completed decision be modified?
+
+## Agent role
+
+The Switchboard agent can suggest screening and routing decisions, but the workflow remains reviewable. Its job is to surface context and propose the next action. The user or configured reviewer can submit or modify the decision.
+
+## Operating guidance
+
+- Keep routebook routes specific.
+- Use forwarding notes when context is important to the recipient.
+- Audit completed decisions after changing rules.
+- Keep private sender handling conservative.
+- Use Switchboard history to understand why a routing decision was made.
+- Treat unknown senders as a review queue.
+- Prefer explicit routebook rules over vague one time routing memory.
+
+## Relationship to agents
+
+Switchboard uses specialized agent behavior for screening and routing. Keep those responsibilities separate from general project agents so inbox routing decisions remain inspectable and predictable.
+
+## Relationship to work tracking
+
+Switchboard decisions can create downstream follow up. Use [Work tracking](/workflows/work-tracking) when a routed thread requires a named person to act by a deadline.

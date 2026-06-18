@@ -1,0 +1,109 @@
+---
+title: "Deal flow augmentation"
+description: "Add immediate context to new inbound deal share threads without turning the thread into duplicated research."
+---
+
+Deal flow augmentation researches a new inbound deal thread and replies inline with concise context. The goal is to save the team from parallel research and make the first scan of a deal thread more useful.
+
+Use this workflow when a shared deals inbox receives many first look opportunities and the team repeatedly asks the same questions: Have we seen this company? Who knows the founders? Did we pass before? Are there relevant portfolio overlaps or comparable deals?
+
+## How it differs from deal flow manager
+
+| Workflow | What it does | What it should not do |
+| --- | --- | --- |
+| Deal Flow Augmentation | Replies once on the first inbound deal share thread with useful context. | Modify deal databases, create work items, or send Slack notifications. |
+| Deal Flow Manager | Maintains deal state, owners, entities, notifications, stale checks, and follow up work. | Add noisy research replies to every thread. |
+
+## Trigger rule
+
+The augmentation agent should run only when:
+
+- The email is addressed to the shared deals inbox.
+- It is the first email in the thread.
+- The company or founder can be identified.
+- Augmenting the thread would save the team work rather than add noise.
+
+If the thread already has replies, the company is unclear, or the conversation is already in motion, the agent should stop.
+
+## Research sources
+
+The agent should research broadly, then synthesize tightly:
+
+1. Affinity or CRM for prior status, relationship context, and owner history.
+2. Deal databases for prospective, active, and passed records.
+3. Prior deal email traffic.
+4. Internal Slack or internal notes when available.
+5. Public web research for current company, founder, market, and competitor context.
+
+Use company and person search skills to keep the research process consistent.
+
+## Reply format
+
+The reply should be a short internal note, not a company summary. The team already has the inbound email. The augmentation should add what the inbound email does not contain.
+
+Good augmentation might include:
+
+- Prior firm history with the company.
+- Founder relationship context.
+- Comparable companies the team has seen.
+- Portfolio overlap.
+- A material market or competitor fact.
+- A clear "nothing found" only when the absence of history is useful.
+
+Avoid:
+
+- Restating the pitch.
+- Long research dumps.
+- Weak relationship score trivia.
+- Unsourced claims.
+- Thorin internal jargon such as "derived feed" or "agent resources."
+- Public web facts without citations when citations are supported.
+
+## Citation behavior
+
+When the reply uses public web facts, include citations for the specific facts that made it into the reply. Do not cite internal email, CRM, Affinity, or prior team history in the same way. Include only sources used in the final reply.
+
+## Safety checks
+
+Before sending, the agent should verify:
+
+- This is the first thread email.
+- The company identity is resolved.
+- The reply is short.
+- Every factual claim came from a source.
+- Web sourced claims have citations when supported.
+- Internal tool names and database names are not leaked.
+- The reply is written as a helpful teammate, not as an outside narrator.
+
+## Example setup
+
+<Steps>
+  <Step title="Create a shared deals inbox feed">
+    Scope the feed to first inbound deal share emails.
+  </Step>
+  <Step title="Create the augmentation agent">
+    Give it read access to deal history, Affinity or CRM, relevant internal search, and web research.
+  </Step>
+  <Step title="Add search skills">
+    Install company search and person search skills that define source order and synthesis rules.
+  </Step>
+  <Step title="Attach a narrow trigger">
+    Trigger only on the shared deals inbox feed, not on every deal related email.
+  </Step>
+  <Step title="Evaluate before launch">
+    Test first email detection, duplicate suppression, citation behavior, prompt injection resistance, and concise output.
+  </Step>
+</Steps>
+
+## Evaluation cases
+
+Deal flow augmentation should be evaluated against:
+
+- First inbound thread with strong prior history.
+- First inbound thread with no useful prior history.
+- Existing thread where the agent should not reply.
+- Ambiguous company identity.
+- Weak Affinity relationship signals that should be ignored.
+- Conflicting public sources.
+- Prompt injection inside an inbound email.
+- Web researched reply that needs citations.

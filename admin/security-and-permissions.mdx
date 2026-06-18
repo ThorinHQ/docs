@@ -1,0 +1,66 @@
+---
+title: "Security and permissions"
+description: "Use scoped access, explicit resources, and careful integration setup for Thorin agents."
+---
+
+Thorin agents should use the least access required for their job. A good setup makes it clear which user, project, integration, resource, contact permission, and automation caused an action.
+
+For the full layered model, see [Security model](/admin/security-model). For email specific controls, see [Email access and compliance](/admin/email-access-and-compliance).
+
+## Permission principles
+
+- Personal agents act as user delegates.
+- Project agents act inside project boundaries.
+- Agents need explicit resource access.
+- Integration credentials do not automatically grant all agents access.
+- Contact permissions gate outbound email, draft creation, SMS, and Slack DMs.
+- Derived feeds should expose lifted context, not raw private message streams.
+- Automations should be narrow before they are live.
+- Sensitive actions should produce drafts, work items, or review steps where appropriate.
+
+## Admin controlled access
+
+Admins control organization level setup such as:
+
+- SSO and directory sync.
+- Slack workspace connection.
+- Google Workspace and shared Drive access.
+- Gong credentials.
+- Salesforce credentials or Hosted MCP setup.
+- Affinity credentials.
+- Organization MCP servers.
+
+## User controlled access
+
+Users control personal settings such as:
+
+- Profile and timezone.
+- Inbox watch.
+- Notification preferences.
+- Privacy keyword filters.
+- User scoped MCP authorizations.
+
+## Resource level access
+
+Resource grants are the practical boundary for agent work. Before enabling an agent:
+
+1. Review every resource attached to the agent.
+2. Remove sources that are not required.
+3. Confirm whether the agent can write or only read.
+4. Confirm which automations can be triggered by each resource.
+5. Review session history after the first runs.
+
+## Public documentation boundary
+
+This docs site is public. Do not publish:
+
+- Internal runbooks.
+- Incident notes.
+- Test credentials.
+- AWS or infrastructure details.
+- On call contacts.
+- Customer specific private notes.
+- Private operational playbooks.
+- Raw sensitive Slack, email, CRM, Gong, or Notion content.
+
+Rewrite internal knowledge into durable product documentation before adding it here.

@@ -1,0 +1,51 @@
+---
+title: "Admin quickstart"
+description: "Set up a Thorin organization, connect core systems, and launch a first project agent."
+---
+
+Use this path when you are configuring Thorin for a team or customer workspace.
+
+<Steps>
+  <Step title="Confirm organization access">
+    Make sure admins can sign in at [app.thorin.com](https://app.thorin.com). Configure SSO and directory sync if your workspace uses them.
+  </Step>
+  <Step title="Connect the first systems">
+    Open Admin, then Integrations and connect the systems needed for your first workflow. Common first connections are Slack, Google Workspace, Google Drive, Salesforce, Gong, Affinity, and MCP connectors.
+  </Step>
+  <Step title="Pick one workflow">
+    Do not begin by connecting everything. Choose one workflow with a clear owner and output, such as deal flow, deal prep briefs, inbox routing, or customer onboarding.
+  </Step>
+  <Step title="Create a project">
+    Open Library, create a project, add members, and define the business boundary. Use a project name that reflects the workflow, such as `Deal Flow`.
+  </Step>
+  <Step title="Add resources and data sources">
+    Add the inboxes, Drive sources, transcript sources, databases, files, and MCP connections the workflow requires. Keep access narrow.
+  </Step>
+  <Step title="Create an agent">
+    Create a project agent from the project workspace. Give it a clear name, role, resources, and initial instructions.
+  </Step>
+  <Step title="Test in chat">
+    Ask the agent to perform the workflow on known examples. Review its session history, tool use, and output before adding triggers.
+  </Step>
+  <Step title="Add automations">
+    Convert the proven instructions into automations. Start with a chat only automation or a manual schedule before enabling event triggers on live data.
+  </Step>
+  <Step title="Review work items">
+    If the agent creates follow up, inspect Assigned Tasks. Confirm owners, due dates, priority, and session links are correct.
+  </Step>
+</Steps>
+
+## Admin checklist
+
+- SSO and directory sync are configured if required.
+- Slack is connected if agents need to read or write Slack.
+- Google Workspace permissions are configured for Gmail, Calendar, or Drive workflows.
+- CRM and revenue tools are connected before account or deal workflows depend on them.
+- MCP connectors are configured by admins before users connect their own OAuth accounts.
+- Each project has explicit members and owners.
+- Each agent has only the resources it needs.
+- Automations are tested in chat before being attached to live triggers.
+
+## What to avoid
+
+Avoid broad "company brain" launches as the first deployment. They are hard to evaluate and easy to grant too much access. Start with a workflow where the agent has a clear job, a bounded data set, and a human owner.

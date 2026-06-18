@@ -1,0 +1,49 @@
+---
+title: "Slack"
+description: "Connect Slack so Thorin agents can read, respond, and notify in Slack."
+---
+
+Slack lets Thorin agents participate in work where conversations already happen. Depending on configuration and permissions, agents can read channel context, reply in threads, send DMs, post notifications, and edit messages they previously sent.
+
+## Connect Slack
+
+<Steps>
+  <Step title="Open Admin Integrations">
+    Go to Admin, then Integrations.
+  </Step>
+  <Step title="Start Slack OAuth">
+    Click the Slack connect action.
+  </Step>
+  <Step title="Approve scopes">
+    Approve the Slack workspace and requested bot scopes.
+  </Step>
+  <Step title="Confirm workspace mapping">
+    Thorin stores the Slack team connection for the tenant.
+  </Step>
+  <Step title="Test an agent safely">
+    Ask an agent to summarize a known channel or send a test notification in an internal channel.
+  </Step>
+</Steps>
+
+## How agents use Slack
+
+Agents can use Slack in two ways:
+
+- Inbound channel routing: Slack mentions or DMs can start or continue agent sessions.
+- Tool use: Agents with Slack capability can look up users/channels, read messages, send messages, and edit their own messages.
+
+## Common workflows
+
+- Deal flow notifications in a dedicated channel.
+- Follow up reminders by DM.
+- Channel summaries for a project.
+- Prep briefs posted before meetings.
+- Switchboard or routing decisions that need human review.
+
+## Security guidance
+
+- Connect Slack only for workspaces that should be available to Thorin.
+- Grant agents access only where the workflow requires it.
+- Use dedicated channels for automated notifications.
+- Avoid posting verbatim sensitive email or CRM content unless the channel is approved for that content.
+- Review session history when an agent posts to Slack unexpectedly.

@@ -1,0 +1,89 @@
+---
+title: "Create skills"
+description: "Design and write Thorin skills that agents can reliably use."
+---
+
+Create a skill when you want Thorin to remember a repeatable method.
+
+## Start from the work
+
+Before writing the skill, answer four questions:
+
+1. What user request should trigger this skill?
+2. What context should the agent read?
+3. What steps should the agent follow?
+4. What output should the user receive?
+
+If the answer is vague, test the workflow in chat before making it a skill.
+
+## Skill structure
+
+Use clear metadata and direct instructions.
+
+```md
+---
+name: deal-prep-brief
+description: Prepare a concise brief before a call for an account or opportunity using CRM, call history, and internal notes.
+examples:
+  - Create a deal prep brief for my Acme call this afternoon.
+  - Summarize this opportunity before tomorrow's customer meeting.
+---
+
+When this skill is used:
+
+1. Identify the account, opportunity, meeting, or customer.
+2. Read the relevant CRM record, recent Gong calls, internal notes, and open tasks.
+3. Summarize the current state, stakeholders, objections, open questions, and recommended next actions.
+4. Keep the brief concise and cite the sources used when possible.
+```
+
+## Write the description carefully
+
+The description is the routing surface. It should say when the skill applies and what it produces.
+
+Good:
+
+```text
+Prepare a brief before a sales or deal meeting using CRM, Gong, internal notes, and open work items.
+```
+
+Weak:
+
+```text
+Helps with sales.
+```
+
+## Add examples in user language
+
+Examples should look like prompts a user would type:
+
+- `Create a prep brief for my 2pm Gong follow up call.`
+- `Classify the latest inbound deal email and suggest the owner.`
+- `Draft a reply to this investor update thread.`
+
+Examples help users discover the skill and give agents concrete invocation patterns.
+
+## Keep instructions operational
+
+Use imperative steps. Say what to check, what to ignore, what format to return, and when to ask a clarifying question.
+
+Good skills often include:
+
+- Inputs the agent should look for.
+- Preferred source order.
+- Required output sections.
+- Safety or privacy constraints.
+- Escalation rules.
+- Examples of good and bad output.
+
+## Test before publishing
+
+Run the skill in chat against realistic examples. Check whether the agent:
+
+- Uses the expected sources.
+- Avoids irrelevant context.
+- Produces the promised format.
+- Handles missing data.
+- Asks for clarification when the target is ambiguous.
+
+Publish only after the behavior is stable enough for other users.

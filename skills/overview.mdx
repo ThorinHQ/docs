@@ -1,0 +1,54 @@
+---
+title: "Skills"
+description: "Use Thorin skills to package reusable agent behavior."
+---
+
+Skills are reusable instructions for agents. They let you turn a good prompt or operating method into a named capability that can be invoked from chat and reused across work.
+
+Use skills when the workflow has a recognizable trigger and a repeatable output. Examples include preparing a deal memo, summarizing a Gong call, drafting an investor update, classifying an inbound lead, or reviewing a contract against a checklist.
+
+## Where skills appear
+
+Open Skills to browse the skill catalog and your own skills.
+
+The page is organized into:
+
+- My skills for skills you own or actively use.
+- Custom skills for skills created in your workspace.
+- Installed skills for catalog skills you have installed.
+- Catalog for skills available to install or fork.
+
+Skill detail pages can show the skill name, description, owner, content, examples, install state, and publication state.
+
+## How agents use skills
+
+A skill has metadata and body content.
+
+| Part | Purpose |
+| --- | --- |
+| Name | The stable handle used in chat and storage. Use lowercase hyphenated names. |
+| Description | The most important discovery text. The agent sees this before deciding whether to load the skill. |
+| Examples | Starter prompts that appear in chat and help users invoke the skill correctly. |
+| Body | The actual operating instructions loaded when the skill is used. |
+| Allowed tools | Optional guidance for the tools the skill expects. |
+
+In chat, type `/` to invoke a skill directly. Thorin can also surface relevant skill starters while you type.
+
+## Install, fork, edit, and publish
+
+| Action | Use it when |
+| --- | --- |
+| Install | You want to use a catalog skill as it is. |
+| Fork | You want your own editable version of someone else's skill. |
+| Edit | You own the skill and need to change its content or examples. |
+| Publish | You want the skill to be available in the catalog for others. |
+| Unpublish | You want to keep the skill private again. |
+| Uninstall | You no longer want a skill available in your workspace. |
+
+## Good skills are narrow
+
+A good skill says exactly when to use it and what output to produce. Avoid broad skills such as `do-research` or `help-with-deals`. Prefer a specific skill such as `deal-prep-brief`.
+
+<Tip>
+  If you have repeated the same prompt three times, it is probably ready to become a skill.
+</Tip>

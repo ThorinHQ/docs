@@ -1,0 +1,96 @@
+---
+title: "Glossary"
+description: "Common Thorin product terms."
+---
+
+## Agent
+
+An AI worker in Thorin that can chat, read context, use tools, update resources, create work items, and run automations.
+
+## Automation
+
+A durable instruction for an agent. Automations can be chat only, scheduled, or event triggered.
+
+## Capability
+
+A tool class an agent role can use, such as reading resources, sending email, searching Slack, managing work items, or configuring triggers. Capabilities still require integrations, resource grants, contact permissions, and the right execution context.
+
+## Contact permission
+
+An outbound channel grant that allows an agent to contact a specific user, address, or external recipient by email, draft email, SMS, or Slack DM.
+
+## Data source
+
+A connected source of external data, such as an inbox, Google Drive, or Gong. Data sources create resources or feeds agents can use.
+
+## Check
+
+A reusable feed rule that can allow, deny, or redact content before it is served to agents.
+
+## Derived feed
+
+A filtered feed produced from a broader source. Use derived feeds to narrow raw email, Drive, or transcript data to the items relevant to a workflow.
+
+## Form factor
+
+The surface where a user or agent interacts, such as web chat, email, Slack, SMS, or a background automation.
+
+## Entity
+
+A structured business object or table, such as a deal, company, account, candidate, or task list.
+
+## MCP
+
+Model Context Protocol. A standard way for external systems to expose tools that agents can call.
+
+## Personal agent
+
+A user scoped agent that acts with that user's allowed context and tools.
+
+## Personal project
+
+A user owned project boundary for private routines, personal resources, user specific skills, and long lived personal agent context. Personal projects are part of the roadmap in some workspaces.
+
+## Project
+
+A shared workspace for a business workflow. Projects group agents, resources, data sources, members, entities, and work items.
+
+## Project agent
+
+An agent created inside a project to own a shared workflow.
+
+## Project member
+
+A user with access to work inside a project. Members can inspect and operate within the project according to their granted access, but owners manage project membership and metadata.
+
+## Project owner
+
+A user responsible for a project. Owners can manage project members and project metadata when their workspace role allows it.
+
+## Resource
+
+An agent readable or agent usable object, such as a file, directory, database, inbox, Drive source, Gong source, or MCP server.
+
+## Session
+
+The record of an agent run, including prompt or trigger, messages, tool calls, matched automations, output, and status.
+
+## Skill
+
+A reusable instruction package that agents can invoke by name or semantic relevance.
+
+## Trigger
+
+An activation rule for an automation. Triggers can be schedules or events from resources such as inboxes, Drive files, or transcripts.
+
+## Topology
+
+The graph view of agents, resources, data sources, feeds, project scope, ownership, read access, and subscriptions.
+
+## Work item
+
+A task managed in Thorin, with assignees, status, priority, due dates, reminders, and links to agent sessions.
+
+## Shield
+
+Thorin's authorization tuple layer. Shield mirrors project, user, resource, and agent relationships so access checks can reason over the graph instead of relying only on ad hoc relational joins.

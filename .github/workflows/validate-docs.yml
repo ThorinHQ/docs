@@ -1,0 +1,35 @@
+name: Validate docs
+
+on:
+  schedule:
+    - cron: "17 9 */3 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-docs
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out docs
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate docs config
+        run: npm run check
+
+      - name: Validate Mintlify build
+        run: npm exec --yes --package mint@latest -- mint validate
+
+      - name: Check Mintlify links
+        run: npm exec --yes --package mint@latest -- mint broken-links --check-redirects

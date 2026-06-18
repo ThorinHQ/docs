@@ -1,40 +1,39 @@
 ---
-title: "Introduction"
-description: "Thorin turns your inbox into AI-powered work — screening, classification, and automated follow-through."
+title: "Thorin product wiki"
+description: "Understand Thorin agents, skills, automations, integrations, and product workflows."
 ---
 
-Thorin is an email-first work platform. It connects to your team's mailboxes, uses AI to triage and classify incoming mail, and lets agents do the follow-through work — answering, routing, opening tickets, updating CRMs, and assigning tasks to the right people.
+Thorin is a workbench for company agents. Use it to chat with a personal agent, build project agents, connect business systems, organize company context, and automate recurring work.
 
-A new Thorin tenant gives your organization:
-
-- **Personal and shared agents** that read selected inboxes, follow rules you define, and act on email through connected tools.
-- **Switchboard** — a screening surface where each user reviews what their personal agent intends to do before it ships.
-- **Skills, Responsibilities, and Work Items** for organizing how agents handle recurring work and how humans pick up what gets handed off.
-- **Library and Entities** for the documents, contacts, and structured records agents reference.
-- **Integrations and MCP servers** for connecting Salesforce, Linear, GitHub, Notion, Slack, Google Drive, and more.
-- **Trust Center** controls — email access policies, privileged-content protection, audit logs, and per-user configuration.
-
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  Connect Gmail, provision your personal agent, and ship your first automation.
-</Card>
+This wiki explains the product at [app.thorin.com](https://app.thorin.com): how the pieces fit together, how to set up users and integrations, and how to build workflows such as deal flow, deal prep briefs, and inbox switchboards.
 
 <CardGroup cols={2}>
-  <Card title="Switchboard" icon="filter" href="/concepts/switchboard">
-    Review what your agent wants to do before it ships.
+  <Card title="Core primitives" icon="diagram-project" href="/product/core-primitives">
+    Start with the model: sources become feeds, feeds power agents, agents create work.
   </Card>
-  <Card title="Agents" icon="robot" href="/concepts/agents">
-    Personal and shared agents, owners, delegates, and resources.
+  <Card title="Projects and processes" icon="folder-tree" href="/product/projects-and-processes">
+    Learn how shared workflows are organized, owned, measured, and promoted from personal work.
   </Card>
-  <Card title="Skills" icon="bolt" href="/features/skills">
-    Reusable capabilities you can install on any agent.
+  <Card title="Start as an admin" icon="gear" href="/getting-started/admin-quickstart">
+    Configure an organization, connect data, create a project, and ship a first agent.
   </Card>
-  <Card title="Automations" icon="repeat" href="/features/automations">
-    Triggered work — chat, schedule, or event.
+  <Card title="Start as a user" icon="comments" href="/getting-started/user-quickstart">
+    Use your personal agent, install skills, connect user scoped tools, and manage notifications.
   </Card>
-  <Card title="Integrations" icon="plug" href="/integrations/overview">
-    First-party connectors and Model Context Protocol servers.
-  </Card>
-  <Card title="Trust Center" icon="shield-halved" href="/admin/trust-center">
-    Email access controls, audit logs, and user administration.
+  <Card title="Build deal flow" icon="briefcase" href="/workflows/deal-flow">
+    Set up a complex workflow with email feeds, CRM context, work items, and scheduled follow up.
   </Card>
 </CardGroup>
+
+## How Thorin works
+
+Thorin has six main layers:
+
+1. Agents that reason and act. Every user has a personal agent, and teams can create project agents for shared workflows.
+2. Feeds and resources that narrow private systems into useful, permissioned context.
+3. Entities that store durable business state such as deals, accounts, customers, or candidates.
+4. Skills and automations that teach repeatable behavior and run it on schedules or events.
+5. Form factors such as web chat, email, Slack, SMS, and background automations.
+6. Work items and sessions that make output accountable and inspectable.
+
+Start with [Core primitives](/product/core-primitives), then read [Projects and processes](/product/projects-and-processes), [Form factors](/product/form-factors), and the [admin quickstart](/getting-started/admin-quickstart) or [user quickstart](/getting-started/user-quickstart).

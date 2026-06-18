@@ -1,0 +1,67 @@
+---
+title: "MCP connectors"
+description: "Set up organization level MCP connectors for Thorin agents."
+---
+
+Model Context Protocol connectors expose external tools to Thorin agents. Use MCP when a product has a mature MCP server or when you need a custom tool surface that Thorin does not provide natively.
+
+## Add an organization MCP server
+
+<Steps>
+  <Step title="Open Admin Integrations">
+    Go to Admin, then Integrations.
+  </Step>
+  <Step title="Click Add Connector">
+    Choose a catalog connector or select Custom.
+  </Step>
+  <Step title="Enter server details">
+    Provide the connector name and server URL. Catalog connectors fill common defaults automatically.
+  </Step>
+  <Step title="Configure OAuth if required">
+    Some connectors need client IDs, callback URLs, scopes, or provider specific setup.
+  </Step>
+  <Step title="Ask users to connect">
+    Users connect their own authorization from Settings, then Integrations when the server requires user OAuth.
+  </Step>
+  <Step title="Grant agent access">
+    Add the MCP resource to the project or agent that should use it.
+  </Step>
+</Steps>
+
+## Catalog connectors
+
+The MCP catalog can include connectors such as:
+
+- Salesforce Hosted MCP.
+- Linear.
+- GitHub.
+- Notion.
+- Sentry.
+- HubSpot.
+- Figma.
+- Custom MCP servers.
+
+Catalog availability can change by workspace and product version.
+
+## Token based connections
+
+Some custom MCP servers do not support OAuth. When available, admins can add a token based connection. Prefer OAuth when the service supports it, because OAuth gives cleaner revocation and user specific authorization.
+
+## Agent access
+
+MCP setup has three layers:
+
+1. Admin adds the server.
+2. User authorizes their account if required.
+3. Agent receives access to the MCP resource.
+
+All three must be true before an agent can use the connector.
+
+## Security guidance
+
+- Add only MCP servers you trust.
+- Prefer HTTPS URLs.
+- Use least privilege scopes.
+- Remove unused servers.
+- Review which users are connected.
+- Keep personal experimental servers out of shared production workflows.

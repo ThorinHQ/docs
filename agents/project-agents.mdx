@@ -1,0 +1,77 @@
+---
+title: "Project agents"
+description: "Create and operate shared agents inside Thorin projects."
+---
+
+Project agents own shared workflows. They live inside [projects](/product/projects-and-processes), use project resources, run automations, and create work items that the team can inspect.
+
+Use a project agent when a workflow needs shared context, durable ownership, or recurring execution. Examples include a Deal Flow Manager, Support Triage agent, Account Prep agent, Recruiting Coordinator, or Customer Onboarding agent.
+
+## Create a project agent
+
+<Steps>
+  <Step title="Open the project">
+    Go to Library or Agent Topology and open the project that should own the agent.
+  </Step>
+  <Step title="Create the agent">
+    Click Create agent or the equivalent action in the project workspace.
+  </Step>
+  <Step title="Choose a role and name">
+    Pick the general Thorin agent role unless your workspace has a specialized template. Name the agent after the job it owns.
+  </Step>
+  <Step title="Grant resources">
+    Add only the files, databases, inboxes, data sources, and tool connections the agent needs.
+  </Step>
+  <Step title="Add instructions and skills">
+    Give the agent a short operating brief. Install skills for repeatable methods.
+  </Step>
+  <Step title="Test in chat">
+    Ask the agent to perform the workflow on a safe example. Review session history before adding triggers.
+  </Step>
+</Steps>
+
+## What project agents can use
+
+Depending on role and permissions, project agents can:
+
+- Read and write project resources.
+- Search data feeds such as email, Drive, and Gong transcripts.
+- Read and update structured entities.
+- Use Slack, email, SMS, web search, Affinity, Salesforce, and MCP tools when available.
+- Create and update work items.
+- Manage schedules, triggers, and automations.
+- Ask users clarifying questions.
+
+Capabilities are not the same as access. An agent may know how to use a tool type but still need a configured integration and resource grant before it can use it. See [Capabilities and tools](/agents/capabilities-and-tools).
+
+## Shared feeds and organization wide agents
+
+Project agents can use shared feeds only when the feed has been deliberately published to them. This is especially important for email feeds.
+
+A shared email feed should be treated as a governed resource:
+
+- IT or compliance approves which inboxes can be processed.
+- Admins configure deny rules and privileged content filters.
+- Feed owners configure matching, checks, and redaction.
+- Users receive viewer access only when they need to inspect the feed.
+- Agents receive resource access only when their workflow needs the feed.
+- Automations receive triggers only after the feed has been tested.
+
+This lets an organization wide agent use private context without receiving every raw private message. The agent sees the lifted, scoped feed, not the entire source inbox.
+
+## Design pattern
+
+Give each project agent a clear operating boundary:
+
+| Field | Good example |
+| --- | --- |
+| Name | `Deal Flow Manager` |
+| Project | `Deal Flow` |
+| Resources | Deals inbox feed, prospective deals DB, active deals DB, SOP, notification preferences |
+| Skills | Deal classification, relationship summary, follow up drafting |
+| Automations | Maintain deals on new deal email, detect stale deals daily |
+| Output | Updated deal state, Slack notification, assigned follow up work item |
+
+## Operations
+
+Use the agent detail panel to review overview, history, capabilities, resources, skills, and automations. Use [Agent topology](/agents/topology) to inspect how the agent connects to its project and resources. Rename or delete agents only when you understand the workflow impact, because scheduled tasks and resource triggers may depend on them.

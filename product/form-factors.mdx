@@ -1,0 +1,78 @@
+---
+title: "Form factors"
+description: "How users and agents interact across web chat, email, Slack, SMS, and future channels."
+---
+
+Users can reach agents through several surfaces. Each surface has different expectations and safety controls.
+
+## Supported surfaces
+
+| Surface | Current role |
+| --- | --- |
+| Web chat | Primary surface for composing prompts, invoking skills, mentioning resources, selecting agents, and inspecting sessions. |
+| Email | Agents can draft email, send Thorin emails to approved contacts, and reply under source email threads when authorized. |
+| Slack | Agents can respond in threads, read channel context, send notifications, and use Slack tools when connected and permitted. |
+| SMS | Agents can respond briefly to known users whose phone numbers are connected and opted in. |
+| Automations | Agents run from schedules or data events without a user typing a prompt. |
+
+## Channel routing
+
+Slack and SMS use a router before they invoke an agent.
+
+1. Identifies the user from the Slack account or phone number.
+2. Loads agents that are allowed to contact that user on the channel.
+3. Filters out internal datasource agents.
+4. Selects the best matching agent when multiple agents are eligible.
+5. Adds recent channel history as context.
+6. Invokes the selected agent with a tool that is specific to the channel.
+7. Records the outbound message against the session.
+
+This lets Thorin support many agents while keeping replies tied to a session.
+
+## Channel specific output
+
+Agents should adapt to the channel:
+
+| Channel | Output rule |
+| --- | --- |
+| SMS | Very brief plain text. No tables or code blocks. |
+| Slack | Short Slack markdown. Use short lists and respect the thread. |
+| Email | Draft or send with subject, threading, preview text, template choice, and optional citations. |
+| Web chat | Full answer, tool output, structured follow up, and richer clarification. |
+
+## Email replies
+
+Email has two main modes:
+
+- Draft: create a Gmail draft in an approved contact's mailbox for review.
+- Send: send a Thorin email to an approved recipient.
+
+Threaded replies use the source email ID, so the outgoing email appears under the original thread. New email sends require a subject. Both modes require contact permission.
+
+## What happens when someone replies to an agent?
+
+Current behavior depends on the channel and workflow. Slack and SMS can route the inbound response back through the channel router for known users. Email workflows can send threaded replies when explicitly configured and allowed.
+
+The future direction needs more care. When a person replies to an agent, Thorin should often route the reply back to the same agent. It should often reply only to that person or thread. The right default is still under discussion because it depends on privacy, ownership, and user expectations.
+
+Design questions still being worked through:
+
+- Should the reply go to the original agent, the user's personal agent, or a project agent?
+- Should the response be visible to the full original thread or only the person who replied?
+- When should the agent ask for human review instead of responding?
+- How should long lived personal agent history affect the reply?
+- How should customer facing channels differ from internal channels?
+
+Until those defaults are finalized, document each workflow's channel behavior explicitly.
+
+## Choosing a form factor
+
+Use web chat for exploration. Use Slack when a team needs to see an update. Use SMS for short prompts to one user. Use email when the output needs to stay inside an existing business thread.
+
+For automations, choose the output surface based on who must act:
+
+- Work item when someone owns follow up.
+- Slack when a team needs awareness.
+- Email draft when a person should review before sending.
+- Threaded email reply when the workflow is designed to add context directly to a thread.
+- No outbound message when the automation only updates an entity.

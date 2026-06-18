@@ -1,0 +1,77 @@
+---
+title: "Work tracking"
+description: "Use Thorin work items to make agent follow up accountable and inspectable."
+---
+
+Work items turn agent output into owned follow up. A work item links an agent session to a human or team obligation.
+
+## What a work item contains
+
+| Field | Purpose |
+| --- | --- |
+| Title | The action someone needs to take. |
+| Description | Details, context, or instructions. |
+| Status summary | A short note about the current state. |
+| Assignees | Users responsible for the work. |
+| Status | Open, completed, or cancelled. |
+| Priority | Low, medium, high, or critical. |
+| Due date | When the work should be done. |
+| Reminder time | When the managing agent should wake up while the item is still open. |
+| Category | A workflow specific classification such as `follow_up`, `review`, or `handoff`. |
+| Manager agent | The agent responsible for monitoring or updating the item. |
+| Created by agent | The agent that originally created the item. |
+| Sessions | The agent sessions that created, updated, completed, or cancelled the item. |
+
+## When agents should create work items
+
+Create a work item when there is a clear owner and deliverable:
+
+- Follow up with a founder by Friday.
+- Review a customer escalation.
+- Send a renewal proposal.
+- Confirm whether a deal should move to passed.
+- Ask legal to review a contract clause.
+- Schedule a meeting with a customer stakeholder.
+
+Do not create work items for metadata that belongs in an entity. If the agent is tracking deal stage, owner, priority, or source, update the entity instead.
+
+## Work item wakeups
+
+Work items can wake the managing agent through reminder and due dates. This is different from a generic schedule.
+
+- A schedule runs because a time arrived.
+- A work item wakeup runs because a specific obligation is still open.
+
+Use work item wakeups for follow up accountability. Use schedules for broad periodic reviews.
+
+## Reviewing work
+
+Open Assigned Tasks to review work items. Users can:
+
+- Switch between open, completed, and cancelled views.
+- Search work items.
+- Filter by user, agent, priority, and status.
+- Sort by due date or creation date.
+- Open a detail panel.
+- See assignees, due dates, status, priority, summaries, and activity.
+- Jump from activity back to the agent session that created or changed the work item.
+
+## Workflow examples
+
+| Workflow | Work item |
+| --- | --- |
+| Deal flow | "Justin to reply to founder and decide whether to take the meeting." |
+| Deal stale scan | "Owner to update status for deal with no touch in 14 days." |
+| Switchboard | "Reviewer to resolve private sender classification." |
+| Deal prep | "AE to answer open pricing question before renewal call." |
+| Customer onboarding | "Admin to confirm Slack OAuth scopes and Drive access." |
+
+## Operating guidance
+
+- Make titles actionable.
+- Assign named users, not generic teams, when possible.
+- Use due dates for commitments.
+- Use reminders for agent wakeups.
+- Keep status summaries short.
+- Link back to sessions for traceability.
+- Complete or cancel stale work items instead of letting them accumulate.

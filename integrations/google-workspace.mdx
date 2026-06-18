@@ -1,0 +1,48 @@
+---
+title: "Google Workspace"
+description: "Use Gmail, Calendar, and Google Drive with Thorin agents."
+---
+
+Google Workspace can provide Thorin with inbox, calendar, and Drive context. The right setup depends on the workspace and workflow.
+
+## Gmail and calendar
+
+Gmail and Calendar access can be configured through workspace level permissioning or user OAuth, depending on deployment. Once configured, users can receive inbox resources and agents can search messages, monitor inbox events, draft email, send Thorin email, or reason about calendar context when the workflow permits it.
+
+## Google Drive
+
+Admins can connect shared drives by granting Thorin's service account access to the shared drive, then adding the shared drive ID in Thorin.
+
+<Steps>
+  <Step title="Share the Drive">
+    Add the Thorin service account to the shared drive with sufficient access for the workflow.
+  </Step>
+  <Step title="Open Admin Integrations">
+    Go to Admin, then Integrations and open the Google Drive setup.
+  </Step>
+  <Step title="Enter the shared drive ID">
+    Thorin validates that it can see the drive.
+  </Step>
+  <Step title="Add the Drive source to a project">
+    Grant the relevant agent access to the Drive source or a derived Drive feed.
+  </Step>
+  <Step title="Test file reads">
+    Ask the agent to list or read a known not sensitive file before enabling automations.
+  </Step>
+</Steps>
+
+## Derived Drive feeds
+
+Use derived Drive feeds when a whole shared drive is too broad. A derived feed can focus an agent on a subset of files that match a workflow, such as customer battlecards or onboarding documents.
+
+## Email workflows
+
+For inbox workflows, agents can search email data feeds and respond to new message triggers. Use derived email feeds to exclude irrelevant traffic before connecting an automation.
+
+## Permission guidance
+
+- Use least privilege source selection.
+- Keep personal/admin traffic out of workflow feeds.
+- Review drafts before enabling any send behavior.
+- Prefer explicit resource grants over broad project access.
+- Disable triggers before changing inbox or Drive source scope.

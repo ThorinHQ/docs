@@ -1,0 +1,89 @@
+---
+title: "Email access and compliance"
+description: "Configure which email Thorin can process, block, redact, and expose to agents."
+---
+
+Email access is one of the most important admin surfaces in Thorin. It determines which inboxes are eligible, which messages are denied, which feed checks apply, and which derived content agents can use.
+
+## Processing gates
+
+Email must pass several gates before an agent can use it:
+
+1. The inbox is connected to Thorin.
+2. The workspace allows all connected inboxes or explicitly allowlists this inbox.
+3. The email does not match blocked inbox, participant, thread participant, subject, or privileged content rules.
+4. The email matches a derived feed through static rules, checks, or classification.
+5. Thorin removes sensitive content when the feed requires redaction.
+6. Thorin indexes the derived email into the feed.
+7. A user or agent has permission to view or use the feed.
+8. An automation is allowed to run on that feed, if applicable.
+
+## Allowed inboxes
+
+Admins choose whether Thorin can process every connected mailbox or only a strict allowlist.
+
+Use strict allowlists when:
+
+- The deployment is early.
+- The organization has high sensitivity around email.
+- Only a few inboxes matter for the first workflow.
+- Compliance needs explicit approval.
+
+## Deny rules
+
+Deny rules prevent processing even when an inbox is otherwise allowed.
+
+Common rules:
+
+- Block a specific mailbox.
+- Block emails involving a participant.
+- Block entire threads involving a participant.
+- Block subject patterns.
+- Block privileged or confidential communications.
+
+## Privileged and confidential filter
+
+The privileged communications filter blocks emails that appear to contain privileged communications. This is a separate safety gate because legal and compliance material should usually not enter agent workflows at all.
+
+## Feed level checks
+
+Feed checks let teams define allow, deny, and redact behavior at the feed level. This is where Thorin can lift only the useful safe part of a private message stream.
+
+For example, a deals feed might allow inbound founder intros, deny LP and fund admin messages, and redact irrelevant personal detail.
+
+## Processing existing content again
+
+When feed rules or checks change, Thorin can process derived content again. This can do the following work.
+
+- Keep an email in the feed.
+- Remove it from the feed.
+- Update redacted content.
+- Index the document again.
+- Record fresh verdicts against the current check version.
+
+This is important for compliance because access policy changes should affect previously derived content, not only future messages.
+
+## Publishing derived content
+
+Only derived, permissioned content should be published for shared agent use. A shared email feed should have:
+
+- A named owner.
+- A documented business purpose.
+- Approved source inboxes.
+- Deny rules.
+- Feed checks.
+- Redaction policy.
+- User viewer grants when humans need to inspect it.
+- Agent grants for only the workflows that need it.
+- Trigger policy for whether automations may run on new items.
+
+## Admin checklist
+
+- Start with strict inbox allowlisting.
+- Add deny rules before enabling feeds.
+- Enable privileged communications filtering where appropriate.
+- Test feed matching on known examples.
+- Review redacted output before granting agent access.
+- Grant feed access to one project agent first.
+- Inspect sessions after the first automation runs.
+- Process content again after important rule changes.

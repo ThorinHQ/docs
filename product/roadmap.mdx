@@ -1,0 +1,119 @@
+---
+title: "Roadmap and WIP"
+description: "Important Thorin directions that are planned, in flight, or rolling out."
+---
+
+This page covers future product direction. Treat it as forward looking. Other pages describe the current product unless they are clearly labeled WIP.
+
+## Personal agents with persistent history
+
+Thorin is moving toward personal agents with OpenClaw style persistent history. A personal agent should build durable context about how you work, what you care about, which tools you use, which workflows recur, and which preferences you have already set.
+
+Today, a personal agent is already the user's delegate. The roadmap is to make that delegation more continuous across time rather than limited to isolated chat sessions.
+
+Expected direction:
+
+- A personal agent has a long lived history across chats and external channels.
+- It can remember stable user preferences, recurring obligations, and prior corrections.
+- It can use past work to improve future skill execution.
+- It can connect personal routines, reminders, and repeated workflows into one durable assistant.
+- It can make better decisions about when a routine should stay personal versus become a project agent.
+- It gives users controls to inspect, correct, or remove remembered context.
+
+This does not mean the personal agent should remember everything. The goal is useful history that users can inspect and correct. The agent should remember enough to reduce repeated setup, with clear controls and permission boundaries.
+
+## Personal projects
+
+Personal projects are the home for context and routines that belong to one user. Use them to separate personal work from shared company workflows.
+
+Current product docs should explain personal agents as user scoped delegates. Future docs should add these ideas.
+
+- Personal project resources.
+- Personal routines and schedules.
+- User specific skills.
+- Personal MCP connections.
+- Long lived preferences and correction history.
+- Promotion paths from personal routine to shared project workflow.
+
+The important boundary is ownership. If the workflow is private to one person, it belongs with the personal agent or personal project. If other people need to review resources, automations, work items, and sessions, promote it to a shared project.
+
+## Deal flow augmentation
+
+Deal flow augmentation is an example of Thorin acting before a team asks. When a first inbound deal email lands in a shared deals inbox, an agent can research the company once. It can compare the company against internal history and external context. It can then reply in the thread with a short note for everyone on the thread.
+
+This is different from a Deal Flow Manager.
+
+| Workflow | Job |
+| --- | --- |
+| Deal Flow Manager | Maintains pipeline state, entities, owners, notifications, stale checks, and work items. |
+| Deal Flow Augmentation | Adds immediate context to the first inbound deal share thread without mutating deal databases or creating tasks. |
+
+See [Deal flow augmentation](/workflows/deal-flow-augmentation) for the documented pattern.
+
+## Reply routing and channel continuity
+
+Agent replies need stronger channel continuity over time. Today, docs should treat email, Slack, SMS, web chat, and automations as separate form factors with explicit permissions.
+
+The roadmap direction needs these decisions.
+
+- A reply to an agent may need to route back to the same project agent.
+- A private reply may need to stay private to the person or thread that sent it.
+- A user may expect their personal agent to absorb the reply as personal context.
+- A project workflow may need the reply to update shared work items or entities.
+- A long running personal agent history may eventually change which agent has enough context to respond.
+
+The product question is ownership. Thorin needs to know who can see the reply, which agent should remember it, and whether the result belongs in personal context or shared project state.
+
+Until this behavior is stable, current docs should describe the shipped channel behavior and mark nuanced reply routing as WIP.
+
+## Skill personalization
+
+Skills are also expected to become more personal. A useful skill should not only encode generic steps. It should be able to use a user's preferences, prior examples, and operating style when that is allowed.
+
+Examples:
+
+- A pass note skill that knows the user's investment theses and writing style.
+- A deal prep skill that remembers the user's preferred brief format.
+- A drafting skill that learns which tone and structure the user keeps editing toward.
+
+The safe path is to keep the skill definition explicit while letting the personal agent supply durable, user approved context.
+
+## Process mining
+
+Thorin should eventually learn workflows from how people already work. Process mining means looking for repeated patterns across email, Slack, meetings, docs, CRM, and work items. Thorin can then suggest a feed, entity schema, skill, automation, or project agent.
+
+Examples:
+
+- A user repeatedly turns inbound deal emails into the same follow up steps.
+- A team keeps asking for the same account prep before customer calls.
+- A partner edits pass notes in a consistent way.
+- A manager routes the same class of inbound email through Switchboard.
+- A support team repeatedly escalates the same customer pattern.
+- A personal agent sees the same private routine become frequent enough to suggest a personal project, skill, or scheduled automation.
+
+The product direction is not "automate everything automatically." The right workflow is:
+
+1. Detect the repeated process.
+2. Show the pattern and supporting examples to the user.
+3. Suggest a skill, feed, entity, automation, or project agent.
+4. Let the user review and edit.
+5. Launch narrowly.
+6. Learn from corrections.
+
+Process mining pairs naturally with persistent personal agent history. The personal agent can learn an individual's routines, while project agents can own workflows that have become shared team processes.
+
+## Connector surface consolidation
+
+MCP and other user scoped connections may move closer to the personal agent over time. The current product still exposes user MCP connections through Settings, then Integrations. Organization MCP setup lives in Admin, then Integrations.
+
+Future docs should update the connection path when the app consolidates connector setup into the personal agent or chat composer.
+
+## How to document WIP
+
+When adding roadmap content:
+
+- Label it as WIP or roadmap.
+- Do not present future behavior as shipped.
+- Link to the current stable setup page.
+- Avoid internal issue IDs unless the page is internal only.
+- Include concrete examples so readers understand the product direction.

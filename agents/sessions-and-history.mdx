@@ -1,0 +1,108 @@
+---
+title: "Sessions and history"
+description: "Use sessions to inspect agent runs, debug automations, connect work items to decisions, and separate current audit logs from future persistent personal agent memory."
+---
+
+A session is the record of an agent run. It is the best place to understand what started a run, which agent handled it, what context was available, which tools were used, and what came out.
+
+Sessions are the audit trail for both chat and background automation.
+
+## What creates a session
+
+Sessions can start from:
+
+- A web chat prompt.
+- A scheduled automation.
+- An email feed event.
+- A Drive file event.
+- A Gong call or transcript event.
+- A work item reminder or due date wakeup.
+- An agent directed wakeup scheduled by a previous run.
+- Slack, SMS, or email routing where configured.
+
+Every important action should be explainable from a session. If you cannot find the session, you cannot reliably debug the workflow.
+
+## What a session should explain
+
+A useful session answers:
+
+| Question | Why it is important |
+| --- | --- |
+| What started this? | Shows whether the run came from chat, a schedule, an email trigger, a resource trigger, or a work item wakeup. |
+| Which agent ran? | Confirms the right personal or project agent handled the job. |
+| What was the prompt or trigger payload? | Shows the input the agent was responding to. |
+| Which responsibility or automation matched? | Explains why this workflow ran. |
+| Which tools were called? | Shows the systems the agent actually used. |
+| Which resources were read or updated? | Connects output to data access. |
+| What output was produced? | Shows drafts, replies, work items, updates, or notifications. |
+| Was anything denied or redacted? | Explains missing context without exposing restricted content. |
+
+Session history is not a substitute for permissions. If you are not authorized to see a session, it may appear as redacted or unavailable.
+
+## Agent history
+
+Open an agent and select History to browse prior sessions. The history table includes session title, summary, trigger source, and timestamp. Use search when you know a company name, workflow label, or output phrase.
+
+Recent sessions also appear on the agent overview. This is usually the fastest path after a new automation runs.
+
+## Session sources
+
+| Source | Example |
+| --- | --- |
+| Chat | A user asks a project agent to prepare a call brief. |
+| Schedule | A stale deal review runs every weekday morning. |
+| Email trigger | A deal feed receives a new approved inbound email. |
+| Drive trigger | A watched folder receives a new file. |
+| Gong trigger | A transcript lands and matches a feed rule. |
+| Work item | A reminder wakes the manager agent before a due date. |
+| Agent wakeup | An agent schedules itself to continue a task later. |
+
+The source is important because capabilities can differ by context. See [Capabilities and tools](/agents/capabilities-and-tools).
+
+## Work items and sessions
+
+Work items and sessions are linked.
+
+An agent session can:
+
+- Create a work item.
+- Update a work item.
+- Complete or cancel a work item.
+- Schedule a reminder on a work item.
+- Wake up later because a work item is due.
+
+The work item detail panel links back to the sessions that created or changed it. Use that link to answer "why does this task exist?"
+
+See [Work tracking](/workflows/work-tracking).
+
+## Debugging workflow runs
+
+When a workflow behaves unexpectedly:
+
+1. Open the agent that ran.
+2. Open recent sessions or search history.
+3. Confirm the source and trigger.
+4. Check whether the expected responsibility or automation matched.
+5. Review tool calls and resource access.
+6. Check whether content was denied or redacted.
+7. Check the output object. It may be a draft, reply, work item, entity update, Slack message, or notification.
+8. Reproduce the path in chat with the same agent.
+9. Update resources, skills, permissions, or triggers.
+10. Run again on a safe example before broadening the automation.
+
+## Session history vs persistent personal history
+
+Session history is the audit log of runs. It tells humans what happened.
+
+Persistent personal agent history is a roadmap direction. It is intended to let a personal agent remember durable user context across sessions. That can include preferences, recurring workflows, corrections, installed skills, useful resources, and patterns that should carry forward.
+
+Do not treat current session history as the same thing as future personal memory. The future memory layer should be inspectable, correctable, and permissioned. See [Roadmap and WIP](/product/roadmap).
+
+## Good operating practice
+
+- Review sessions after adding a new trigger.
+- Prefer drafts until session history proves the workflow is reliable.
+- Link recurring outputs to work items when humans need follow up.
+- Keep automation names and responsibility titles specific.
+- Treat redaction and denied content as security controls. Do not route around them.
+- Use topology for configuration questions and sessions for run questions.

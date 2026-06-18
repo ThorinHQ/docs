@@ -1,0 +1,84 @@
+---
+title: "Deal prep briefs"
+description: "Build an agent that prepares before meeting briefs from CRM, Gong, Notion, Slack, and internal context."
+---
+
+A deal prep brief gives a seller, investor, or customer facing teammate the context they need before a call. It should be concise, source aware, and action oriented.
+
+This workflow is usually separate from the Deal Flow Manager. Deal Flow Manager maintains pipeline state. A prep brief agent prepares a person for a meeting.
+
+## Inputs
+
+Good prep briefs often combine:
+
+- Salesforce opportunity, account, contact, stage, history, and next step context.
+- Gong calls, transcripts, key quotes, objections, and action items.
+- Notion or Drive battlecards.
+- Slack discussion about the account or opportunity.
+- Email thread history.
+- Open work items and owner assignments.
+- Calendar context for the upcoming meeting.
+
+## Output format
+
+Use a short, predictable format:
+
+1. Current state: where the deal or account stands.
+2. Stakeholders: who is important and what they care about.
+3. Recent history: key calls, emails, Slack notes, or CRM changes.
+4. Risks and objections: open concerns, competitors, blockers, missing information.
+5. Recommended plan: what to do in the meeting.
+6. Open questions: what the user should ask.
+7. Sources checked: which systems were used and which were missing.
+
+## Set up
+
+<Steps>
+  <Step title="Create a project or reuse an account project">
+    Use a shared project if multiple people need visibility into the prep workflow.
+  </Step>
+  <Step title="Connect source systems">
+    Configure Salesforce, Gong, Slack, Google Workspace, and Notion or Drive battlecards as needed.
+  </Step>
+  <Step title="Create the prep agent">
+    Give the agent access to only the account and revenue context it needs.
+  </Step>
+  <Step title="Write a deal prep skill">
+    Create a skill that defines source order, output format, and missing data behavior.
+  </Step>
+  <Step title="Test from chat">
+    Ask for a brief on known accounts. Verify the agent uses the right opportunity, call, and notes.
+  </Step>
+  <Step title="Add automation">
+    Trigger briefs from chat first. If reliable, add a scheduled before meeting run such as 30 minutes before relevant calls.
+  </Step>
+</Steps>
+
+## Prompt examples
+
+```text
+Create a prep brief for my Acme call this afternoon. Use Salesforce, Gong, Slack, and Notion battlecards if available.
+```
+
+```text
+Summarize the latest call history and objections for the Contoso opportunity. Include recommended next questions.
+```
+
+```text
+Prepare a 5 minute executive brief for tomorrow's renewal conversation.
+```
+
+## Quality bar
+
+A good brief is:
+
+- Short enough to read before a call.
+- Explicit about which systems it checked.
+- Honest about missing data.
+- Focused on next actions.
+- Careful with quoted customer language.
+- Grounded in recent calls and CRM state.
+
+## Caveats
+
+CRM and call data can be stale or incomplete. If the agent finds conflicting context, it should state the conflict and identify the freshest source instead of pretending the record is clean.

@@ -1,0 +1,77 @@
+---
+title: "Security model"
+description: "How Thorin combines identity, resource grants, Shield tuples, contact permissions, and session auditability."
+---
+
+Thorin's security model is built for agents that work across private business systems. The hard question is whether the right agent can see the right approved context, act through the right channel, and leave a record that people can inspect.
+
+## Layers
+
+| Layer | What it controls |
+| --- | --- |
+| Tenant | The organization boundary. Slack teams, credentials, users, agents, resources, and sessions are scoped to a tenant. |
+| User | Human identity, personal agent ownership, personal settings, OAuth credentials, phone number, and notification preferences. |
+| Project | Shared workflow boundary for project agents, resources, entities, data sources, members, and work items. |
+| Resource grant | Read or owner access for one agent to files, feeds, databases, and source pointers. |
+| Shield tuple | Authorization graph facts mirroring resource, project, user, and agent relationships. |
+| Contact permission | Whether an agent may email, draft for, send SMS to, or Slack DM a user or external address. |
+| Integration credential | Whether Thorin can connect to an external system at all. |
+| Session | The audit record for an agent run and its actions. |
+
+## Resource grants and shield
+
+Resources are not automatically available to every agent in a project. Agents receive explicit resource grants. Thorin also writes those grants into Shield tuples, so the database row and authorization graph stay aligned.
+
+This is important because agents can have overlapping project membership without identical access. A project can contain sensitive resources that only one agent should read.
+
+## Personal agents
+
+A personal agent is owned by one user and should act as that user's delegate. It can receive read access to that user's inbox and calendars, and it can use user scoped connections where authorized.
+
+This is not the same as giving the user's private data to every organization agent. Personal agent context stays user scoped unless a separate feed, entity, resource grant, or workflow deliberately lifts a subset into shared context.
+
+## Project agents
+
+Project agents act inside a shared workflow boundary. They use project resources, project entities, and automations. They should receive only the feeds, files, databases, and tool connections required for their job.
+
+## Contact permissions
+
+Sending messages is separately gated. An agent may have a capability such as email or SMS, but it still needs contact permission for the recipient or channel.
+
+Contact permissions cover:
+
+- Email sends.
+- Gmail draft creation.
+- SMS.
+- Slack DMs.
+
+This prevents an agent from turning broad reasoning capability into unrestricted outbound communication.
+
+## Sessions and auditability
+
+Every agent run should produce a session. Sessions link:
+
+- The agent.
+- The triggering user, email, schedule, work item, or resource event.
+- Messages.
+- Matched automations.
+- Tool use.
+- Work item activity.
+- Slack, SMS, or email records where applicable.
+
+When something goes wrong, start with the session. It is the most useful debugging and governance object in Thorin.
+
+## Why this is complex
+
+Thorin is designed for work where the most useful context is private. This includes email, DMs, meetings, CRM notes, customer calls, and internal docs. A simple permission model would either block agents from useful work or expose too much.
+
+The layered model lets Thorin do the following work.
+
+- Connect to private systems.
+- Filter and redact before broad use.
+- Grant access to lifted feeds, not raw streams.
+- Let agents act through approved contacts only.
+- Keep sessions and work items inspectable.
+- Let admins and compliance teams decide what can be processed.
+
+That complexity is intentional. It lets agents help with company workflows without becoming uncontrolled service accounts.

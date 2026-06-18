@@ -1,0 +1,61 @@
+---
+title: "Common issues"
+description: "Diagnose common Thorin setup, agent, integration, and automation issues."
+---
+
+## The agent cannot access a source
+
+Check:
+
+- The integration is connected.
+- The user authorization is active if the tool requires user OAuth.
+- The source is attached as a resource.
+- The agent has access to that resource.
+- The agent role has the required capability.
+- The session history does not show an auth or permission error.
+
+Use [Agent topology](/agents/topology) to inspect the graph, [Capabilities and tools](/agents/capabilities-and-tools) to distinguish tool availability from access, and [Sessions and history](/agents/sessions-and-history) to inspect the run.
+
+## No MCP servers appear in settings
+
+Ask an admin to add an MCP connector from Admin, then Integrations. Users can connect only to servers the organization has made available.
+
+## MCP connection says setup required
+
+The admin has added the connector but has not finished OAuth or provider specific setup. Ask the admin to open Admin, then Integrations and complete configuration.
+
+## An automation did not run
+
+Check:
+
+- The automation is active.
+- The trigger is active.
+- The trigger source is the expected resource or data feed.
+- The schedule timezone is correct.
+- The event source received matching data.
+- The agent still has access to required resources.
+- The session history or trigger logs show an error.
+
+If the automation created or changed work items, open the work item detail and jump back to the linked session.
+
+## An automation ran on the wrong data
+
+Narrow the source. For inbox, Drive, or transcript workflows, prefer derived feeds over raw sources. Test the agent in chat on examples from the feed before enabling again the trigger.
+
+## Slack messages are missing or posted in the wrong place
+
+Check:
+
+- Slack is connected for the workspace.
+- The agent has Slack capability.
+- The channel or user is visible to the connected Slack app.
+- The notification preference or routebook points to the intended destination.
+- The agent is using a dedicated channel for automated notifications.
+
+## Deal records are duplicated
+
+Ask the agent to search existing deal entities and recent deal feed history before creating a new record. Add matching rules to the SOP, such as company domain, founder names, opportunity name variants, and email thread continuity.
+
+## Prep briefs are vague
+
+Make the skill more specific. Require the agent to check named sources, include missing data notes, and return fixed sections such as current state, stakeholders, recent history, risks, recommended plan, and open questions.

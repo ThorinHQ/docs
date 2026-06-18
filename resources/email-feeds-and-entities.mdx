@@ -1,0 +1,116 @@
+---
+title: "Email feeds and entities"
+description: "How Thorin turns raw email into scoped feeds, structured entities, and agent workflows."
+---
+
+Email is one of Thorin's most important primitives because valuable work already happens there. The product goal is not to expose every private email to every agent. The goal is to lift useful email into permissioned feeds and structured workflows.
+
+## The pipeline
+
+The email path has several steps.
+
+1. A mailbox is connected.
+2. The inbox must pass the workspace allowlist.
+3. Deny rules and privileged content filters run.
+4. Feed match rules, checks, or a classifier decide whether the email belongs in a feed.
+5. Thorin redacts content when the feed requires it.
+6. Thorin writes approved content into a derived email feed.
+7. An agent can search the feed, or an event trigger can run from it.
+8. The agent can update an entity, create a work item, notify someone, draft a reply, or send an approved reply.
+
+## Raw inboxes
+
+An EmailInbox resource represents a user's mailbox or a shared mailbox. Admins decide which connected inboxes are eligible for processing.
+
+Workspace modes can be:
+
+- Allow all connected inboxes. Every connected mailbox is eligible.
+- Explicit allowlist. Only named inboxes are eligible.
+
+Strict allowlisting is safer for early deployments and sensitive teams.
+
+## Deny rules
+
+Deny rules apply after inbox eligibility and before feed processing. They can block:
+
+- Specific inboxes.
+- Email participants.
+- Thread participants.
+- Subject patterns.
+- Privileged or confidential communications.
+
+Use deny rules to keep known sensitive traffic out of agent workflows even when the inbox itself is otherwise allowed.
+
+## Derived email feeds
+
+A DerivedEmailFeed is a filtered stream of emails. A feed can use static rules, checks, or agent classification. A feed can also redact content before Thorin indexes it.
+
+Examples:
+
+| Feed | Includes | Excludes |
+| --- | --- | --- |
+| Deals Emails | Inbound investment opportunities, founder intros, diligence threads, partner reactions. | LP/fund admin, hiring, portfolio ops, personal admin, internal strategy. |
+| Customer Escalations | Threads that indicate risk, urgency, renewal risk, or support escalation. | Routine automated notifications and unrelated account chatter. |
+| Hiring follow up | Candidate and recruiter threads requiring action. | General team scheduling and traffic that is not about candidates. |
+
+## Checks
+
+Checks are reusable rules with effects:
+
+| Effect | Meaning |
+| --- | --- |
+| allow | Include matching email in the feed. |
+| deny | Exclude matching email from the feed. |
+| redact | Include the email but replace sensitive content before serving it. |
+
+Checks keep a version record. A feed verdict can show which check version was used. Thorin can evaluate content again when rules change.
+
+## Redaction and lifting
+
+Redaction lets Thorin use private context without putting raw private context into every prompt. A feed can preserve the useful business signal and remove material that should not be broadly visible.
+
+Examples of lifted context:
+
+- "A founder asked for a follow up after sending a Series A deck."
+- "The team previously passed because the category looked crowded."
+- "A customer raised pricing concerns in the renewal thread."
+
+Examples of content that may need to stay out:
+
+- Attorney client communications.
+- Personal or medical information.
+- Internal compensation or HR content.
+- Irrelevant private thread details.
+- Raw customer quotes in broad Slack channels.
+
+## Publishing a feed to agents
+
+Publishing a feed means granting access. It does not mean every agent gets it.
+
+Before publishing:
+
+1. Confirm the owning business workflow.
+2. Confirm IT or compliance approval when required.
+3. Confirm inbox eligibility.
+4. Configure deny rules.
+5. Configure feed checks or classifier prompts.
+6. Configure redaction.
+7. Grant user viewer access only where needed.
+8. Grant agent resource access only to agents that need the feed.
+9. Decide whether any automations can trigger on the feed.
+
+## Entities from feeds
+
+Feeds are streams. Entities are durable state.
+
+For deal flow, the email feed is fresher than the database, but the database is what tracks the workflow over time. The agent should read the feed, then update structured entities such as:
+
+- Prospective Deals.
+- Active Deals.
+- Passed Deals.
+- Companies.
+- Contacts.
+- Owners.
+- Next steps.
+
+This pattern works beyond deals. Email and message streams show what happened. Entities record what people and agents should remember and act on.

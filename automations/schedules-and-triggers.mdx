@@ -1,0 +1,59 @@
+---
+title: "Schedules and triggers"
+description: "Configure the activation rules that run Thorin automations."
+---
+
+Triggers decide when an automation runs. Thorin supports schedule triggers, resource event triggers, and chat only automations.
+
+## Schedule triggers
+
+Use schedules for recurring work:
+
+- Hourly checks.
+- Daily summaries.
+- Weekday digests.
+- Weekly reviews.
+- Custom cron schedules.
+
+Schedules use the selected timezone. For cross team workflows, choose the timezone of the team that reviews the output.
+
+## Resource event triggers
+
+Use event triggers when new external context should start work.
+
+Common event sources include:
+
+- Email inboxes.
+- Derived email feeds.
+- Google Drive sources.
+- Derived Drive feeds.
+- Gong sources.
+- Meeting transcript feeds.
+- Calendars, when enabled for the workflow.
+
+Event triggers can activate all active automations on an agent or only specific automations.
+
+## Chat only automations
+
+Use chat only automations for repeatable behavior that should not run in the background. This is the right first step for sensitive workflows.
+
+## Choosing the right trigger
+
+| Need | Recommended trigger |
+| --- | --- |
+| User wants to ask for the work manually | Chat only |
+| Work should happen at a predictable time | Schedule |
+| Work should happen when new data arrives | Resource event |
+| Work should produce due date follow up | Work item with due date or reminder |
+
+## Operational guidance
+
+- Keep the first trigger narrow.
+- Prefer one event source per automation while testing.
+- Use work items for follow up and reminders instead of inventing separate schedules.
+- Review session history after trigger changes.
+- Disable a trigger before changing the underlying data source or resource grants.
+
+<Warning>
+  Do not attach an untested automation to a live busy inbox or broad Drive source. Test on known examples first, then expand scope.
+</Warning>

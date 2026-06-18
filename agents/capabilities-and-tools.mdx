@@ -1,0 +1,127 @@
+---
+title: "Capabilities and tools"
+description: "Understand the difference between an agent role, a capability, a configured integration, resource access, and permission to act."
+---
+
+Capabilities are the tool classes an agent role can use. A capability is not the same as access to a specific resource, credential, contact, or trigger.
+
+Thorin checks several things before an agent can act.
+
+1. The role gives the agent a capability.
+2. The integration provides credentials.
+3. The resource grant provides context.
+4. Contact permission allows outbound messages.
+5. The trigger context decides when the tool is available.
+
+If any part is missing, the agent should not act.
+
+## Capabilities are not access
+
+An agent can have a capability such as "Send and draft emails" or "Read Slack messages" and still be unable to use it for a specific task.
+
+Common missing pieces:
+
+- The integration is not connected.
+- The agent does not have the resource grant.
+- The user or contact is not approved for the channel.
+- The capability is only available in chat, but the agent is running from an email trigger.
+- The source feed denied or redacted the content before the agent saw it.
+- The agent is in the wrong project.
+
+When debugging, start with the session, then check topology, resources, capabilities, and contact permissions.
+
+## Capability availability
+
+Capabilities can be scoped by execution context.
+
+| Availability | Meaning |
+| --- | --- |
+| Always available | The capability can be used in chat, triggers, and other supported run contexts when access exists. |
+| Chat only | The capability is available when a user is actively chatting with the agent. |
+| Email trigger only | The capability is available during an email triggered dispatch. |
+| Drive trigger only | The capability is available during a Drive file triggered dispatch. |
+| Gong call trigger only | The capability is available during a Gong call or transcript triggered dispatch. |
+
+This is why an agent may be able to configure a trigger in chat, but not configure a trigger while already running from that trigger.
+
+## Common capability groups
+
+| Capability group | What it enables |
+| --- | --- |
+| Read resources | Query databases, search data feeds, read transcripts, read calendar events, and read Drive files where granted. |
+| Write resources | Insert, update, delete, or annotate structured resources where granted. |
+| Create resources and databases | Create new resource structures, usually from chat or a setup workflow. |
+| Responsibilities | Read or manage agent responsibilities and automations. |
+| Work items | Read, create, update, complete, cancel, or schedule follow up on work items. |
+| Session history | Read prior session messages and run context where authorized. |
+| Contact permissions | Inspect which people or addresses the agent may contact. |
+| Email | Draft emails or send Thorin emails when contact permissions and channel rules allow it. |
+| SMS | Send SMS messages to approved contacts. |
+| Slack | Read Slack context or send Slack messages when connected and approved. |
+| Web search | Search the public web for research tasks. |
+| Affinity and Salesforce | Look up deal, account, opportunity, relationship, and activity context when credentials exist. |
+| Triggers and scheduling | Manage resource triggers, cron triggers, and future wakeups. |
+| Feeds | Read feeds or configure feed filters in the right setup context. |
+| Skills | Read, create, or update reusable agent instructions. |
+| Switchboard | Screen, route, review, or manage routebook behavior where the workspace uses Switchboard. |
+
+The capability list in the agent detail panel shows what an agent can do.
+
+## Outbound actions
+
+Outbound messaging is separately gated from tool knowledge.
+
+An agent may need:
+
+- A role with email, SMS, or Slack capability.
+- A connected channel.
+- Contact permission for the user, address, phone number, or Slack DM.
+- A project or personal agent boundary that makes the action appropriate.
+- A session record explaining why the action happened.
+
+For email, distinguish:
+
+| Action | Meaning |
+| --- | --- |
+| Draft email | Create a draft for review in the approved mailbox. |
+| Send Thorin email | Send through Thorin when the contact and channel are approved. |
+| Threaded reply | Reply under an existing thread when the workflow is designed for it. |
+
+For private or sensitive workflows, start with drafts. Move to sending only after the workflow has reliable session history and human approval.
+
+## MCP tools
+
+MCP servers expose external tools to agents. Treat an MCP server as both a resource and a tool surface.
+
+- The server must be configured.
+- The right user or organization credential must be available.
+- The agent must have access to the MCP resource or tool set.
+- The action must fit the agent's role and project boundary.
+
+Personal MCP connections are usually best paired with a user's personal agent. Organization MCP servers belong in admin managed integrations. Grant them only to the agents that need them.
+
+## Set up checklist
+
+Before asking an agent to use a tool:
+
+1. Confirm the integration is connected.
+2. Confirm the resource appears in Library or Topology.
+3. Grant the resource to the agent.
+4. Confirm the agent has the relevant capability.
+5. Add contact permissions for outbound channels.
+6. Test in chat.
+7. Inspect the session.
+8. Add automation triggers only after the chat path works.
+
+## Failure modes
+
+| Symptom | Likely cause |
+| --- | --- |
+| Agent says it cannot access a file or feed | Missing resource grant or project mismatch. |
+| Agent can draft but not send | Contact permission or channel permission is missing. |
+| Agent works in chat but not from a trigger | Capability is chat only or the trigger context differs. |
+| Agent does not see private email context | Feed rules denied, redacted, or never published the derived feed. |
+| Agent cannot use Salesforce or Affinity | Integration credential is missing or not available to the agent. |
+| Agent creates duplicate tasks | Work item lookup or session history capability is missing from the workflow design. |
+
+Capabilities explain what the role can materialize as tools. Permissions decide whether those tools can reach a specific object or person.

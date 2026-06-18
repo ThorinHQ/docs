@@ -1,0 +1,134 @@
+---
+title: "Users, roles, and permissions"
+description: "Understand how Thorin separates users, personal agents, project membership, agent ownership, resource grants, and channel permissions."
+---
+
+Thorin permissioning has several layers. They are separate so an agent can have enough context to help without turning that context into unrestricted action.
+
+The main layers are tenant role, user, personal agent, project membership, agent ownership, resource grants, capabilities, contact permissions, and session audit.
+
+## Users
+
+A user is a person in the organization. Users can have:
+
+- A profile and notification settings.
+- Connected personal tools.
+- A personal agent.
+- Personal project context.
+- Project memberships.
+- Assigned work items.
+- Contact permissions granted to agents.
+
+Every user should have a personal agent. Treat that agent as the user's delegate, not as a tenant wide service account.
+
+## Tenant roles
+
+Tenant roles control broad administrative access. Exact role names can vary by workspace configuration, but the common categories are:
+
+| Role category | Typical responsibility |
+| --- | --- |
+| User | Uses personal and shared agents within granted projects and resources. |
+| Project owner | Manages a specific project, including members and project metadata. |
+| Operations or admin | Manages agents, integrations, resources, and project setup across the workspace. |
+| Support or elevated admin | Helps inspect and repair operational state when explicitly authorized. |
+
+Tenant role does not automatically mean every agent should see every resource. Resource grants and Shield authorization still matter.
+
+## Project membership
+
+Projects have owners and members.
+
+| Project role | Can do |
+| --- | --- |
+| Owner | Rename the project, manage members, delete the project when allowed, and operate the workflow. |
+| Member | Work inside the project, inspect allowed context, and review work items or sessions they can access. |
+
+Personal projects are owned by one user. Shared projects have explicit membership.
+
+When adding members, add the people who need to review outputs or own follow up. Do not add broad groups only to make setup easier.
+
+## Agent ownership
+
+Agent owners can manage the agent when their workspace role allows it. Ownership is separate from project membership.
+
+Agent detail can include:
+
+- Owners.
+- Work item delegate.
+- Project assignment.
+- Contact permissions.
+- External contacts.
+- Capabilities.
+- Resources.
+- Skills.
+- Report subscribers.
+- Session history.
+
+Use agent ownership for operational responsibility. Use project membership for workflow visibility.
+
+## Resource grants
+
+Resources are granted to agents deliberately. A project can contain multiple agents with different access to files, feeds, databases, and integrations.
+
+Resource access usually answers:
+
+- Which agent can read this?
+- Which agent owns or manages this?
+- Which agent subscribes to this feed?
+- Which project contains this resource?
+- Which users can view the resource directly?
+
+For sensitive sources, prefer derived feeds and explicit grants over broad raw source access.
+
+## Contact permissions
+
+Contact permissions govern outbound communication. They are separate from capabilities.
+
+An agent may have email, SMS, or Slack capability but still need permission for the specific recipient or contact channel.
+
+Contact permission types include:
+
+| Permission | Meaning |
+| --- | --- |
+| Email | Agent may send email to the approved contact when the workflow allows it. |
+| Draft Email | Agent may create drafts for review. |
+| SMS | Agent may send SMS to the approved contact. |
+| Slack DM | Agent may send a Slack direct message to the approved contact. |
+| External email contact | Agent may contact an approved external address. |
+
+Start with draft permissions for new workflows. Add send permissions only after the workflow has reliable sessions and a clear reviewer.
+
+## Personal agents
+
+Personal agents are user scoped. They are useful because they can operate with context that belongs to one person, such as preferences, personal routines, user specific MCP servers, and private work.
+
+Personal agents should not become hidden bridges into shared workflows. If private context is useful to a shared process, lift only the useful safe output into an approved feed, entity, work item, or project resource.
+
+## Admin checklist
+
+When configuring a new workspace or workflow:
+
+1. Confirm users and tenant roles.
+2. Create the project and add owners.
+3. Add members who need visibility.
+4. Connect only the integrations needed for the workflow.
+5. Create or grant resources.
+6. Create project agents with clear roles.
+7. Add contact permissions for outbound channels.
+8. Test in chat.
+9. Review sessions.
+10. Add triggers and schedules.
+11. Review sessions again after the first production runs.
+
+## Security questions to ask
+
+- Who owns this workflow?
+- Which project contains it?
+- Which users can inspect it?
+- Which agent is allowed to act?
+- Which resources can that agent read?
+- Which external systems can it call?
+- Which contacts can it message?
+- Where will the session audit trail appear?
+
+If any answer is unclear, fix the configuration before broadening the automation.

@@ -1,55 +1,41 @@
-# Mintlify Starter Kit
+# Thorin docs
 
-Use the starter kit to get your docs deployed and ready to customize.
+Mintlify documentation for Thorin.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+The docs site is public. Treat `ThorinHQ/thorin`, Slack, Linear, and Notion as research sources, not as content that can be copied directly into this repository.
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
-
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
-
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
-
-```bash
-npx skills add https://mintlify.com/docs
-```
-
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
+Write pages for the customer facing product surface at `app.thorin.com`. Cover agents, skills, automations, knowledge, integrations, admin setup, security, and workflows. Keep internal runbooks, incidents, test credentials, AWS details, on call contacts, customer specific notes, and private operational playbooks out of this repo.
 
 ## Development
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview documentation changes locally.
 
-```
+```bash
 npm i -g mint
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+Run the preview at the repository root.
 
-```
+```bash
 mint dev
 ```
 
 View your local preview at `http://localhost:3000`.
 
-## Publishing changes
+## Validation
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+Run the docs checks locally.
 
-## Need help?
+```bash
+npm run check
+npm exec --yes --package mint@latest -- mint validate
+npm exec --yes --package mint@latest -- mint broken-links --check-redirects
+```
 
-### Troubleshooting
+`.github/workflows/validate-docs.yml` runs the same checks every three days and on demand. It validates docs health but does not rewrite content.
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+## Troubleshooting
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+- If a page loads as a 404, run `npm run check` and confirm every navigation path maps to an `.mdx` file.
+- If a redirect fails, run `mint broken-links --check-redirects` and confirm its destination page exists.
+- If product behavior changed, update the relevant page and `docs.json` in the same change.

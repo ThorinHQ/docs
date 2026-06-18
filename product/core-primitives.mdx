@@ -1,0 +1,90 @@
+---
+title: "Core primitives"
+description: "The small set of Thorin primitives that explain the whole product."
+---
+
+Start with the objects that Thorin uses every day. Once these objects are clear, the rest of the product is easier to understand.
+
+## The shortest model
+
+People connect systems such as email, Slack, Drive, Gong, Salesforce, Affinity, Notion, and MCP servers.
+
+Thorin filters those systems into feeds and resources.
+
+Agents read the approved context. They apply skills and automations. They update entities, create work items, draft replies, send approved messages, or record a result.
+
+Sessions show what happened. Permissions decide who or what can read, write, send, or trigger each object.
+
+## Primitive map
+
+| Primitive | Why it is important |
+| --- | --- |
+| Source | A system Thorin connects to, e.g. Gmail, Slack, Drive, Gong, Salesforce, Affinity, Notion, MCP, SMS, or the web. |
+| Feed | A filtered stream from a broader source. A feed lets Thorin use private data without giving every agent the raw source. |
+| Entity | A structured business object that should last beyond one message, e.g. a deal, account, company, candidate, customer, issue, or task. |
+| Resource | A file, database, feed, tool handle, or source pointer that an agent can access. |
+| Agent | The worker that reads resources, uses tools, applies skills, updates entities, and communicates. |
+| Skill | A reusable instruction that an agent can load when the task matches. |
+| Automation | A responsibility attached to an agent. It can run from chat, a schedule, or a data event. |
+| Work item | A task with an owner, due date, reminder, status, and session links. |
+| Session | The audit record for an agent run. It includes the trigger, messages, tools, resources, actions, and outcome. |
+| Permission | The rule that decides whether a user, agent, or integration can read, write, send, or trigger something. |
+
+## Email as the clearest example
+
+Email shows the model clearly because email contains both useful work and sensitive information.
+
+<Steps>
+  <Step title="A connected inbox receives mail">
+    Thorin watches allowed mailboxes. Admins can allow all connected inboxes or restrict processing to an explicit allowlist.
+  </Step>
+  <Step title="Access rules filter the raw email">
+    Deny rules can block inboxes, participants, thread participants, subject patterns, and privileged or confidential content.
+  </Step>
+  <Step title="A derived feed decides whether the message belongs">
+    Static match rules, checks, or agent classification decide whether an email belongs in a feed such as `Deals Emails`.
+  </Step>
+  <Step title="Sensitive material can be redacted">
+    A feed can apply redaction before content is indexed or served to agents.
+  </Step>
+  <Step title="The feed is indexed">
+    Matching derived emails are indexed into the feed, with config stamps so old content can be processed again when rules change.
+  </Step>
+  <Step title="An agent acts">
+    A project agent can read the feed, update entities, create work items, send a draft or reply, or post a notification.
+  </Step>
+  <Step title="The session records what happened">
+    The run links back to the triggering email, matched automation, tool calls, work items, and output.
+  </Step>
+</Steps>
+
+## Shared feeds are not public feeds
+
+A shared feed can be published to approved agents and users. It is not visible to every agent by default.
+
+For example, a deal email feed should be made available to organization wide agents only after the right IT, compliance, and business owners approve these details.
+
+- Which inboxes are eligible.
+- Which emails are denied before processing.
+- Which checks or redactions are applied.
+- Which users can view the feed.
+- Which agents can read from it.
+- Which automations can trigger on it.
+
+This is a core Thorin rule. Agents should get approved workflow context. They should not get a raw mirror of every private message.
+
+## Why Thorin is different
+
+Many agent tools avoid private systems because the permission problem is hard. Others put too much private context into prompts. Thorin takes a narrower path.
+
+Thorin can connect to private systems such as email, Slack, meetings, CRM, and docs.
+
+Thorin can filter those systems into feeds for specific workflows.
+
+Thorin can redact or block sensitive material before agents see it.
+
+Thorin can expose only the approved feed to a shared project or organization agent.
+
+Thorin keeps a session trail so people can inspect why an action happened.
+
+Agents are useful because they can work with private context. They are safe because Thorin filters, permissions, and records that context.

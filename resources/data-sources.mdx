@@ -1,0 +1,43 @@
+---
+title: "Data sources"
+description: "Connect and scope external data for agents."
+---
+
+Data sources connect Thorin to external systems and create agent readable resources.
+
+## Common sources
+
+| Source | What agents can use it for |
+| --- | --- |
+| Email inboxes | Search messages, monitor new threads, create deal or routing workflows, draft replies. |
+| Google Drive | Read shared Drive files, compare revisions, build document driven workflows. |
+| Gong | Search and read call transcripts, extract quotes, summarize meetings, prepare briefs. |
+| Salesforce | Look up opportunities, accounts, contacts, call records, history, and timelines. |
+| Affinity | Resolve deal status, company information, and relationship strength. |
+| Notion through MCP | Read explicitly connected pages or databases when a Notion MCP connector is configured. |
+| MCP servers | Add tool access from external systems that implement the Model Context Protocol. |
+
+## Derived feeds
+
+Raw sources are often too broad. Derived feeds help narrow what an agent should see or react to.
+
+Examples:
+
+- A deals email feed that includes inbound deal threads and excludes LP, fund admin, hiring, and personal traffic.
+- A Drive feed for only customer facing battlecards.
+- A meeting transcript feed for only calls related to a specific account segment.
+
+Use derived feeds to reduce noise and lower the chance that an automation reacts to irrelevant data.
+
+## Event triggers
+
+Some data sources can trigger automations when new content arrives. Before enabling event triggers:
+
+- Confirm the feed matches the intended items.
+- Test the automation in chat.
+- Run on a narrow source first.
+- Review session history after activation.
+
+## Privacy and scope
+
+Connect the least data needed for the workflow. For sensitive sources such as inboxes, CRM, transcripts, and Notion, document the expected access scope in the project resources so future maintainers understand why the agent can see it.

@@ -1,0 +1,114 @@
+---
+title: "Agent topology"
+description: "Use topology to inspect how agents, resources, feeds, data sources, and projects connect."
+---
+
+Agent Topology shows how agents, resources, feeds, and projects are connected. Use it when you need to understand the setup behind an agent.
+
+Use chat when you want an answer. Use topology when you want to inspect how the answer would be produced.
+
+## What topology shows
+
+Topology can include:
+
+- Personal agents and project agents.
+- Internal data source manager agents where they are part of a feed pipeline.
+- Email inboxes, calendars, Google Drive sources, Gong sources, and MCP resources.
+- Derived email, Drive, and meeting transcript feeds.
+- Files, folders, and structured databases.
+- Project membership through the selected project scope.
+- Connections between agents and resources, including ownership, read access, and subscriptions.
+
+The exact graph depends on the project scope and your permissions. If a resource is not connected to a live agent or visible workflow, topology may omit it instead of rendering a floating node.
+
+## Reading the graph
+
+| Connection | Meaning |
+| --- | --- |
+| Ownership | The agent or system owns the resource or manages its lifecycle. |
+| Read access | The agent can read the resource when its role and permissions allow it. |
+| Subscription | The resource can trigger or feed the agent, such as a derived feed dispatching work. |
+
+The graph usually starts with a source system. Then it shows the feed, agent, and output.
+
+1. A source such as an inbox, Drive folder, or Gong call provides data.
+2. A derived feed filters that data.
+3. A project agent reads the feed.
+4. The agent creates an entity update, work item, draft, reply, or notification.
+
+For email, this is important because a project agent should normally see a derived feed, not the entire raw inbox. See [Email feeds and entities](/resources/email-feeds-and-entities).
+
+## Layout modes
+
+Agent workspaces can show:
+
+| Mode | Use it when |
+| --- | --- |
+| Chat | You want to prompt an agent or test a workflow. |
+| Topology | You want to inspect configuration, resources, sessions, permissions, and connected objects. |
+| Both | You want to chat while keeping the graph visible for context. |
+
+The project page opens topology for one project. The all projects view shows a broader tenant level graph, subject to permissions.
+
+## Open nodes
+
+Click or open nodes to inspect details:
+
+| Node | What opens |
+| --- | --- |
+| Agent | Overview, responsibilities, recent sessions, permissions, capabilities, resources, skills, and subscriptions. |
+| Resource | File, folder, database, feed, or source details when you have access. |
+| Derived email feed | Feed configuration and processing details. |
+| Inbox | Inbox detail, when you have permission to inspect it. |
+| Responsibility | The automation or responsibility detail, including related sessions. |
+
+Topology deep links can point directly at an agent, resource, or session. This is useful when sharing debugging context with another operator.
+
+## Debugging with topology
+
+When an agent gives the wrong answer or fails to act, inspect topology in this order:
+
+1. Open the project scope that owns the workflow.
+2. Confirm the expected agent is in the project.
+3. Confirm the expected feed, file, database, or integration is connected.
+4. Open the agent detail panel and check resources.
+5. Open capabilities and confirm the agent has the relevant tool class.
+6. Check contact permissions before expecting email, SMS, or Slack actions.
+7. Open recent sessions and inspect the run that made the decision.
+
+Topology answers "could this agent see or use the thing?" Session history answers "what did it actually do?"
+
+## Common patterns
+
+### Data feed pipeline
+
+The data feed path is simple.
+
+1. A raw source sends content to Thorin.
+2. Thorin applies checks, deny rules, matching, and redaction.
+3. Thorin writes approved content to a derived feed.
+4. A project agent subscribes to that feed.
+5. An automation session records the run.
+
+Use this for email, Drive, Gong, and other evented sources where raw data must be filtered before an agent acts.
+
+### Shared project agent
+
+In a shared project, a project agent uses approved resources and writes work items or entities.
+
+Use this when a workflow needs team visibility and durable ownership.
+
+### Personal agent
+
+In personal work, the user works through a personal agent. That agent uses the user's allowed tools and context.
+
+Use this for private work. Promote only the useful shared output into a project resource, feed, entity, or work item.
+
+## Keep the graph legible
+
+- Give agents names that describe their job.
+- Keep resource titles plain.
+- Avoid attaching every feed to every agent.
+- Split projects when membership or resource sensitivity differs.
+- Use derived feeds to narrow source systems before agents consume them.
+- Review topology after adding automations, not only after failures.

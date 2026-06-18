@@ -1,0 +1,49 @@
+---
+title: "Notion"
+description: "Use Notion context in Thorin through MCP or allowlisted read only access."
+---
+
+Thorin's current Notion path is MCP based in the product surface researched here. Admins can add a Notion MCP connector, users can authorize their account when required, and agents can use the connector when granted access.
+
+## Typical setup
+
+<Steps>
+  <Step title="Add the Notion connector">
+    An admin opens Admin, then Integrations, chooses the Notion MCP connector or a custom Notion MCP URL, and completes connector setup.
+  </Step>
+  <Step title="Authorize user access">
+    Users connect from Settings, then Integrations if the connector requires user OAuth.
+  </Step>
+  <Step title="Share the right Notion content">
+    Give the Notion integration access only to the pages or databases the workflow needs.
+  </Step>
+  <Step title="Grant agent access">
+    Add the MCP resource to the relevant project agent.
+  </Step>
+  <Step title="Test reads">
+    Ask the agent to summarize a known page or retrieve a known database item before relying on it in an automation.
+  </Step>
+</Steps>
+
+## Good Notion use cases
+
+- Battlecards for deal prep.
+- Customer onboarding notes.
+- Internal account plans.
+- Product FAQ or policy documents.
+- Lightweight research databases.
+
+## Scope guidance
+
+Use deny by default sharing. Agents should read explicitly shared pages or databases, not broad workspaces. Document which Notion pages are expected inputs for each workflow.
+
+## Deal prep example
+
+A prep brief agent can use Notion battlecards alongside Salesforce and Gong.
+
+- Salesforce for opportunity state.
+- Gong for recent calls and quotes.
+- Notion for competitor positioning or process notes.
+- Slack for internal discussion.
+
+The brief should name the source categories it used and flag missing context instead of inventing it.

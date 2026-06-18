@@ -1,0 +1,67 @@
+---
+title: "Automations"
+description: "Run Thorin agents from schedules, resource events, or chat only instructions."
+---
+
+Automations let agents work without waiting for a fresh chat prompt. They are durable instructions attached to agents and optionally activated by triggers.
+
+Use automations for work that has a stable trigger, a repeatable decision process, and a clear output.
+
+## Automation types
+
+| Type | When it runs | Example |
+| --- | --- | --- |
+| Chat only | Only when a user asks for it in chat. | "Review this account and suggest next actions." |
+| Scheduled | On a recurring cron schedule. | "Every weekday morning, summarize stale deals." |
+| Event triggered | When a resource changes or receives new data. | "When a new deal email arrives, classify it and create follow up." |
+
+## Automation anatomy
+
+An automation has:
+
+- A title.
+- A plain description.
+- Agent instructions.
+- Optional triggers.
+- Optional resource scope.
+- Session history from previous runs.
+
+The trigger activates the automation. The instructions tell the agent what to do.
+
+## Safe rollout path
+
+<Steps>
+  <Step title="Test in chat">
+    Ask the agent to perform the task manually on known examples.
+  </Step>
+  <Step title="Create a chat only automation">
+    Save the instruction but keep activation manual.
+  </Step>
+  <Step title="Add a schedule or test trigger">
+    Run at low frequency or on a narrow test data source first.
+  </Step>
+  <Step title="Review sessions">
+    Inspect tool use, output, and work items after each run.
+  </Step>
+  <Step title="Expand scope">
+    Add more sources or increase frequency only after the automation is reliable.
+  </Step>
+</Steps>
+
+## Good automation jobs
+
+- Monitor a data feed and classify new items.
+- Create tasks when follow up is needed.
+- Produce a recurring digest.
+- Detect stale opportunities or missing responses.
+- Review new Gong transcripts and extract action items.
+- Route email through a switchboard flow.
+
+## Poor automation jobs
+
+- "Watch everything and tell me what is important."
+- "Handle all customer messages automatically."
+- "Keep our CRM perfect."
+- "Use every tool and make decisions independently."
+
+Those jobs are too broad. Break them into smaller automations with explicit inputs and outputs.

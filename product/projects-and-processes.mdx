@@ -1,0 +1,141 @@
+---
+title: "Projects and processes"
+description: "Use projects to give shared agent workflows a durable home, clear owners, scoped resources, and measurable work."
+---
+
+Projects are the shared workflow boundary in Thorin. A project groups the people, agents, resources, data sources, entities, automations, work items, and metrics that belong to one business process.
+
+Use a project when a workflow needs shared context or shared accountability. Deal flow is one example of a project shaped workflow.
+
+<Note>
+  Some older internal surfaces may use the word "process" for the same concept. In the product docs, use project unless you are describing an API or code surface that still says process.
+</Note>
+
+## What a project contains
+
+| Object | Why it belongs in a project |
+| --- | --- |
+| Members | The people who can inspect or operate the workflow. |
+| Project agents | Shared agents that own repeatable jobs inside the project. |
+| Resources | Files, folders, databases, feeds, inboxes, calendars, MCP servers, and other context handles. |
+| Data sources | Connected systems such as email, Drive, Gong, Salesforce, Affinity, Notion, and MCP tools. |
+| Entities | Structured objects the workflow tracks, such as deals, accounts, customers, candidates, or cases. |
+| Automations | Scheduled, event triggered, or chat only instructions that make the workflow repeatable. |
+| Work items | Owned follow up created or managed by humans and agents. |
+| Health metrics | Completion, timeliness, category, and throughput views for work tracked in the project. |
+
+Do not use a project as a place to put unrelated work. A good project has a clear boundary. Its agents and members should only get the resources they need.
+
+## Personal and shared projects
+
+Every user has a [personal agent](/agents/personal-agent). Thorin is moving toward richer personal projects for private routines and long lived personal context. Personal projects are owned by one user. They are the right place for private reminders, personal MCP connections, user specific skills, and routines that should not be visible to a team.
+
+Shared projects are team owned. They are the right place when other people need to review sessions, inspect resources, receive work items, or trust that the workflow continues even if one person is away.
+
+Use this rule:
+
+| If the workflow is | Put it in |
+| --- | --- |
+| Private to one user | Personal agent or personal project |
+| Repeated by one user but useful to others later | Personal first, then promote |
+| Important to a team or reviewable | Shared project |
+| Triggered from shared feeds or shared inboxes | Shared project |
+| Responsible for external replies or routing | Shared project with explicit permissions |
+
+See [Roadmap and WIP](/product/roadmap) for the persistent personal agent history and personal project direction.
+
+## Project detail
+
+Open a project from Library or Agent Topology to inspect its detail view.
+
+Project detail can include:
+
+- Overview. Description, creation date, composition, recent work items, open work, and 30 day completion signals.
+- Members. Owners and members, when you have permission to manage the project.
+- Health metrics. Category trends, SLA or on time views, assignee ranking, and flow over time.
+- Work items. Project scoped tasks with search, status, priority, assignee, and agent filters.
+- Project page. A focused workspace with chat and topology for the selected project.
+
+Owners can rename or delete a shared project and manage membership. Members can work inside the project, inspect allowed resources, and review the work they are allowed to see.
+
+## Create a project
+
+<Steps>
+  <Step title="Name the business process">
+    Use a name that describes the job, not the tool. Good examples are `Deal Flow`, `Customer Onboarding`, `Account Prep`, `Recruiting`, and `Support Triage`.
+  </Step>
+  <Step title="Write the operating brief">
+    Add a short description of what the project owns, what it should not own, and who reviews the outputs.
+  </Step>
+  <Step title="Add members">
+    Add the people who should inspect sessions, receive work items, or own follow up. Keep membership narrower than the whole company by default.
+  </Step>
+  <Step title="Connect resources">
+    Add the feeds, files, folders, databases, and tool connections the workflow needs. For sensitive sources, document why they are needed.
+  </Step>
+  <Step title="Create project agents">
+    Give each agent a role, resources, responsibilities, skills, and contact permissions that match one job.
+  </Step>
+  <Step title="Test before automating">
+    Run the workflow in chat, inspect sessions, then add scheduled or event triggers after the path is reliable.
+  </Step>
+</Steps>
+
+## Project design patterns
+
+### Deal flow
+
+A deal flow project usually contains:
+
+- A shared inbound deal feed.
+- Structured deal and company entities.
+- A Deal Flow Manager project agent.
+- Deal research or augmentation skills.
+- CRM or Affinity access where configured.
+- Work items for partner follow up.
+- Scheduled stale deal review.
+
+Use [Deal flow](/workflows/deal-flow) for the durable pipeline workflow and [Deal flow augmentation](/workflows/deal-flow-augmentation) for the inline first email research pattern.
+
+### Customer onboarding
+
+An onboarding project usually contains:
+
+- Customer workspace files.
+- Implementation checklist entities.
+- Meeting transcript feeds.
+- A project agent that prepares status updates.
+- Work items for setup tasks, blockers, and owner follow up.
+
+### Account prep
+
+An account prep project usually contains:
+
+- CRM account and opportunity context.
+- Gong or meeting transcript feeds.
+- Email and calendar context where approved.
+- A prep skill that produces a briefing format.
+- Work items for next steps and open risks.
+
+## Operational rules
+
+- Create one project per business process, not one project per prompt.
+- Keep personal work in the personal agent until it needs shared review.
+- Give each project agent one durable job.
+- Grant resources to agents deliberately, even inside the same project.
+- Use entities for state that should be filtered, assigned, or updated over time.
+- Use work items for human owned follow up.
+- Review sessions after new automations run.
+- Use project metrics only when the workflow produces meaningful work items.
+
+## When to split a project
+
+Split a project when:
+
+- Two teams need different membership.
+- Agents need different sensitive resources.
+- Work items have different owners, categories, or SLAs.
+- The workflow has separate review cadences.
+- One part is experimental and another part is critical.
+
+Do not split a project only because it has multiple agents. Multiple agents can belong to the same project when they share the same business boundary.

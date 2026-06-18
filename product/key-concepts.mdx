@@ -1,0 +1,71 @@
+---
+title: "Key concepts"
+description: "The core Thorin terms you need before building agents and automations."
+---
+
+Thorin works best when you separate identity, context, behavior, activation, and auditability. For the shortest full model, start with [Core primitives](/product/core-primitives).
+
+## Core objects
+
+| Concept | Meaning |
+| --- | --- |
+| User | A person in the organization. Users have settings, notification preferences, connected tools, and a personal agent. |
+| Personal agent | A user scoped assistant that can act with that user's allowed context and tools. |
+| Project | A shared workspace for a business process. Projects group agents, resources, data sources, members, and work items. |
+| Project agent | An agent created inside a project to own a shared workflow. |
+| Resource | Durable context or a tool handle an agent can access, such as a file, directory, database, inbox, Drive source, Gong source, or MCP server. |
+| Data source | A connected source that can feed agents with external data, such as email, Drive files, or transcripts. |
+| Entity | A structured table or database like object used to track business objects such as deals, accounts, companies, or tasks. |
+| Skill | Reusable agent instruction written once and invoked by name, examples, or semantic relevance. |
+| Automation | A durable instruction that can run on a schedule, from an event, or only when invoked in chat. |
+| Trigger | The activation rule for an automation. Common triggers are schedules, inbox events, Drive updates, Gong transcript events, and chat only invocation. |
+| Work item | A task produced or managed by agents, with owners, status, priority, due dates, reminders, and session history. |
+| Session | The record of an agent run, including messages, tool usage, matched automations, and outcome. |
+| Form factor | The surface where a user or agent interacts: web chat, email, Slack, SMS, or an automation. |
+
+For the project operating model, read [Projects and processes](/product/projects-and-processes). For agent execution and inspection, read [Capabilities and tools](/agents/capabilities-and-tools), [Agent topology](/agents/topology), and [Sessions and history](/agents/sessions-and-history).
+
+## The lifecycle
+
+<Steps>
+  <Step title="Connect useful systems">
+    Start with the systems that matter for the workflow: Slack, Google Workspace, Drive, Gong, Salesforce, Affinity, Notion, or MCP servers.
+  </Step>
+  <Step title="Create a project">
+    Use a project to define the business boundary. Examples: Deal Flow, Customer Onboarding, Account Prep, Recruiting, Support Triage.
+  </Step>
+  <Step title="Add resources and data sources">
+    Add only the inboxes, folders, feeds, databases, and tool connections the workflow needs.
+  </Step>
+  <Step title="Create agents">
+    Give each agent a clear role, the right resources, and a short set of responsibilities.
+  </Step>
+  <Step title="Package repeatable behavior as skills">
+    Use skills for reusable methods: write an investor update, prepare a deal memo, summarize a Gong call, classify an inbound lead.
+  </Step>
+  <Step title="Automate only after the chat path works">
+    Test in chat first. Then add schedules or event triggers for the work that should happen without manual prompting.
+  </Step>
+  <Step title="Review work items and sessions">
+    Use assigned tasks and session history to inspect what happened, who owns follow up, and whether the automation needs tuning.
+  </Step>
+</Steps>
+
+## Access model
+
+Project membership does not automatically mean every agent can read every resource. Agents need explicit resource access. This is what lets one project contain multiple agents with different responsibilities and different data boundaries.
+
+Personal agents are scoped to their users. A personal agent should be treated as the user's delegate, not as an organization wide service account.
+
+## The key product path
+
+Most Thorin workflows follow the same path:
+
+1. A message, file, transcript, or CRM update enters Thorin through a connected source.
+2. The source is filtered into a feed or resource.
+3. Security rules decide what is denied, redacted, or allowed.
+4. An agent reads the scoped context.
+5. The agent applies a skill or automation.
+6. The output becomes an entity update, work item, draft, reply, notification, or session record.
+
+That path is why feeds, resources, entities, sessions, and permissions matter as much as the agent itself.

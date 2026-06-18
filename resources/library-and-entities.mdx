@@ -1,0 +1,50 @@
+---
+title: "Library and entities"
+description: "Use Thorin Library to manage projects, files, integrations, and structured business objects."
+---
+
+The Library is the main place to inspect shared company context in Thorin. It has project and entity views.
+
+## Projects
+
+Projects group the assets for a workflow:
+
+- Agents.
+- Files and folders.
+- Integrations.
+- Data sources.
+- Derived feeds.
+- Members.
+- Work items.
+- Health metrics.
+
+Use projects when a workflow needs shared ownership and durable context. Examples include Deal Flow, Customer Onboarding, Account Prep, Recruiting, and Support Triage. See [Projects and processes](/product/projects-and-processes) for the full operating model.
+
+## Project detail
+
+Project detail pages can show:
+
+- Overview and metadata.
+- Members and roles.
+- Health metrics.
+- Scoped work items.
+- Links into topology and chat.
+
+Keep project membership current. People who review outputs or own follow up should be members. People who do not need visibility should not be added by default.
+
+## Entities
+
+Entities are structured objects. Use them for business records agents should read or maintain, such as deals, accounts, companies, contacts, projects, candidates, or support cases.
+
+When creating an entity, define:
+
+- Name and description.
+- Schema columns.
+- Permissions.
+- How agents should update it.
+
+## Entity design
+
+Good entity schemas are easy for both humans and agents to use. Prefer clear fields such as status, owner, priority, next step, source, last touched, and notes.
+
+Avoid using one giant text field as a database. If the field is important for filtering, routing, assignment, or automation, make it a column.

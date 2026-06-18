@@ -1,94 +1,64 @@
 ---
-title: "Personal MCPs"
-description: "Add and manage your own MCP servers from the personal agent panel."
+title: "Personal and user MCP servers"
+description: "Connect MCP servers that require user scoped authorization."
 ---
 
-Personal MCPs let you connect your own [Model Context Protocol](https://modelcontextprotocol.io) servers to your personal agent without involving an admin. Each personal MCP is scoped to you — only your personal agent can see or call its tools.
+MCP connectors let Thorin agents use external tools exposed through the [Model Context Protocol](https://modelcontextprotocol.io). Admins can add organization MCP servers, and users can connect their own account to approved servers.
 
-Use a personal MCP when you want to give your agent access to a service that:
+Use user scoped MCP connections when an agent should act through your account or read data only you are allowed to access.
 
-- Is specific to you (a personal Notion, your own scratch server, a tool only you have access to).
-- Hasn't been rolled out to your whole organization yet.
-- You want to test before asking an admin to install it for everyone.
+## Where to connect
 
-For shared connectors that everyone in the org should use, ask an admin to install an [Organization MCP](#organization-mcps) instead.
-
-## Where to find it
-
-MCP management has moved off the user **Settings** page. The old **Integrations** tab and the MCP rows under **Resources** are gone — open your **personal agent** instead. Both **Personal MCPs** and **Organization MCPs** now live as sections on that panel.
+Current Thorin workspaces expose user MCP connections from Settings, then Integrations. If no MCP servers appear, ask an admin to add connectors in Admin, then Integrations first.
 
 <Note>
-  If you were linking to **Settings → Integrations** or to MCP entries under an agent's **Resources** list, update those links to point at the personal agent panel.
+  Some newer builds may surface MCP controls closer to the personal agent. The current dashboard still routes user MCP authorization through Settings, then Integrations.
 </Note>
 
-## Add a personal MCP
+## Connect an approved MCP server
 
 <Steps>
-  <Step title="Open your personal agent">
-    Go to your personal agent and scroll to the **Personal MCPs** section.
+  <Step title="Open Settings">
+    Go to Settings, then Integrations.
   </Step>
-  <Step title="Click Add personal MCP">
-    A dialog opens asking for a name and the server URL.
+  <Step title="Find the MCP server">
+    Each row shows the server name, URL, and connection status.
   </Step>
-  <Step title="Enter a name and URL">
-    - **Name** — a label for the connection (for example, `My Notion`).
-    - **Server URL** — the HTTPS URL of your MCP server (for example, `https://mcp.example.com`).
-
-    Only `http://` and `https://` URLs are accepted, and the host must resolve to a public address. Loopback, link-local, and private-network hosts are rejected.
+  <Step title="Connect or reconnect">
+    Click Connect. If the row is expired or errored, click Reconnect.
   </Step>
-  <Step title="Connect">
-    Click **Add**. Thorin tries OAuth first and falls back to a static access token if you provided one. See [How connection works](#how-connection-works) below.
+  <Step title="Authorize the service">
+    Complete the OAuth flow for the external service.
+  </Step>
+  <Step title="Test the connection">
+    Use Test Connection when available to confirm the connector is healthy and exposing tools.
   </Step>
 </Steps>
 
-## How connection works
-
-When you add a personal MCP, Thorin automatically picks the right auth flow for the server.
-
-### OAuth (preferred)
-
-If the server advertises OAuth, Thorin runs [Dynamic Client Registration (RFC 7591)](https://datatracker.ietf.org/doc/html/rfc7591) and an [authorization code + PKCE](https://datatracker.ietf.org/doc/html/rfc7636) flow on your behalf:
-
-1. Thorin discovers the server's protected-resource and authorization-server metadata.
-2. It registers Thorin as a new OAuth client with the server (no client ID or secret to copy by hand).
-3. After **Add**, you're redirected to the server to sign in and approve access.
-4. The server redirects back to Thorin with an authorization code, which is exchanged for tokens that are stored against your user.
-
-If a token later expires or fails, the row shows **Expired** or **Error** and a **Reconnect** button takes you through the authorize flow again.
-
-### Static access token (fallback)
-
-If the server doesn't support OAuth dynamic client registration, paste a long-lived token instead:
-
-1. In the **Add Personal MCP** dialog, expand **Static access token (fallback)**.
-2. Paste the token your MCP server issued you.
-3. Click **Add**.
-
-Thorin uses the token directly as a bearer credential when calling the server. If you leave the field empty and the server has no OAuth support, the request fails with a message asking for a static token.
-
-<Tip>
-  Try OAuth first — leave the access token field blank. Thorin only falls back to the static token if discovery finds no usable OAuth configuration.
-</Tip>
-
-## Manage personal MCPs
-
-Each row in **Personal MCPs** shows the server's name, URL, and current connection status:
+## Connection states
 
 | Status | Meaning |
 | --- | --- |
-| **Connected** | The agent can call this server right now. |
-| **Expired** | OAuth token expired — click **Reconnect**. |
-| **Error** | Last call failed — click **Reconnect** or **Remove**. |
-| **Not connected** | The server is added but not authorized yet — click **Sign in**. |
+| Connected | Thorin can call the MCP server for your account. |
+| Expired | Your authorization expired. Reconnect. |
+| Error | The last call failed. Reconnect or ask an admin to inspect setup. |
+| Not connected | The server is available, but you have not authorized it. |
+| Set up required | An admin still needs to finish connector configuration. |
 
-Use the **Remove** button on any row to delete the personal MCP. Removing the server also revokes the connection. You can only remove personal MCPs that you own.
+## Admin installed organization MCP servers
 
-## Organization MCPs
+Admins add organization MCP servers from Admin, then Integrations. They can choose a catalog entry such as Salesforce, Linear, GitHub, Notion, Sentry, HubSpot, or Figma, or add a custom MCP server URL.
 
-The same panel also lists **Organization MCPs** — connectors an admin installed for everyone in the org. You can:
+Some MCP servers require admin OAuth configuration before users can connect. Salesforce Hosted MCP, for example, requires a Salesforce External Client App, PKCE, the right scopes, and Hosted MCP activation.
 
-- **Connect** or **Reconnect** to an org MCP using its OAuth flow.
-- **Test** an active connection to confirm it's healthy and see how many tools it exposes.
-- **Disconnect** to revoke your personal authorization without removing the server for others.
+## How agents use MCP tools
 
-If an org MCP shows **Setup required**, the admin still needs to finish configuring it. Ask them to complete setup before trying to connect.
+Agents do not preload every MCP tool. They first list available MCP servers, activate the relevant server, then use the tools exposed by that server during the run. This keeps the active tool surface smaller and makes it easier to reason about which external system was used.
+
+## Troubleshooting
+
+- If no MCP servers appear, ask an admin to add one.
+- If Connect is disabled, the connector likely needs admin setup.
+- If OAuth fails, ask the admin to verify callback URLs, client settings, and scopes.
+- If a connected server exposes no useful tools, test the connection and inspect the server's MCP configuration.
+- If the agent cannot use the server, confirm the agent has access to the MCP resource and that the connection is active.

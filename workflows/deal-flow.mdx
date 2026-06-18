@@ -1,0 +1,102 @@
+---
+title: "Deal flow workflow"
+description: "Build a Thorin deal flow agent with email feeds, deal databases, CRM context, automations, and work items."
+---
+
+A deal flow workflow helps an investment or revenue team classify inbound opportunities, maintain deal state, notify the right people, and keep follow up from going stale.
+
+Thorin has the primitives for this workflow. Use a project agent, a derived deals email feed, structured deal databases, SOP resources, scheduled stale deal review, and event triggered maintenance.
+
+For inline research on the first inbound deal share email, use [Deal flow augmentation](/workflows/deal-flow-augmentation). It is adjacent to Deal Flow Manager, but it has a different job: reply once with context, without mutating deal state.
+
+## Target architecture
+
+| Piece | Purpose |
+| --- | --- |
+| Deal Flow project | Shared boundary for the workflow. |
+| Deal Flow Manager agent | Owns classification, updates, notifications, and follow up. |
+| Deals Emails feed | Filtered feed of deal related email threads. |
+| Prospective Deals entity | Early or unqualified opportunities. |
+| Active Deals entity | Opportunities under active review. |
+| Passed Deals entity | Opportunities the team has decided not to pursue. |
+| Deal Flow SOP | Instructions for classification, owner assignment, notifications, and edge cases. |
+| Notification preferences | Where and how to notify people. |
+| Maintain Deals automation | Runs on new deal feed items. |
+| Detect Stale Deals automation | Runs on a schedule to find overdue follow up. |
+
+## Set up
+
+<Steps>
+  <Step title="Create the project">
+    Create a Deal Flow project in Library. Add the team members who should review work or receive assignments.
+  </Step>
+  <Step title="Connect integrations">
+    Connect Gmail or the relevant deal inbox, Slack for notifications, Affinity for relationship and deal status context, and any CRM or source of truth systems the workflow needs.
+  </Step>
+  <Step title="Create a derived deals feed">
+    Build a feed that includes inbound deal threads and excludes LP, fund admin, hiring, personal, internal strategy, and unrelated operational traffic.
+  </Step>
+  <Step title="Create deal entities">
+    Create structured entities for prospective, active, and passed deals. Include fields for company, owner, stage, source, priority, last touch, next step, and notes.
+  </Step>
+  <Step title="Add SOP resources">
+    Add files for the deal flow SOP, team expertise map, escalation rules, and notification preferences.
+  </Step>
+  <Step title="Create the agent">
+    Create a project agent named `Deal Flow Manager`. Grant it the feed, entities, SOP files, and relevant integrations.
+  </Step>
+  <Step title="Test in chat">
+    Ask the agent to classify known threads, update a test deal, and explain why it chose an owner or status.
+  </Step>
+  <Step title="Enable the event automation">
+    Attach `Maintain Deals` to the deals feed only after chat tests are correct.
+  </Step>
+  <Step title="Enable the stale deal schedule">
+    Add a daily or weekday schedule for `Detect Stale Deals`. Start with a report only output before letting it create broad work items.
+  </Step>
+</Steps>
+
+## What the agent should do
+
+For a new inbound deal thread, the agent should:
+
+1. Decide whether the thread is truly deal related.
+2. Search recent deal feed history before trusting stale database state.
+3. Check existing prospective, active, and passed deal entities.
+4. Use Affinity or CRM only to resolve uncertainty or enrich context.
+5. Create or update the correct deal record.
+6. Notify the right person or channel according to preferences.
+7. Create a work item when someone needs to follow up.
+8. Avoid quoting sensitive email verbatim into broad Slack channels.
+
+## Stale deal detection
+
+Use scheduled review for deal records that have not moved recently. The agent should look for:
+
+- No response after a promised follow up date.
+- Active deals with no recent owner activity.
+- Reassigned deals that still point to the old owner.
+- Email threads with clear next steps but no task.
+- Opportunities that should be moved to passed or archived.
+
+Create work items for human owners rather than silently changing sensitive state.
+
+## Privacy and routing
+
+Deal flow often touches sensitive email and relationship data. Use a dedicated notification channel and prefer summaries over raw quotes. For highly sensitive opportunities, route by DM or create a private work item instead of posting in a shared channel.
+
+## Evaluation checklist
+
+- Duplicate notifications are suppressed.
+- Cold outbound and unrelated emails are excluded.
+- Existing deals are updated instead of duplicated.
+- Owner assignment follows the expertise map.
+- Stale deals create useful work items.
+- Passed deals are not reopened without a clear reason.
+- Slack output respects privacy rules.
+- Session history explains the source data used.
+
+## Related workflows
+
+- [Deal flow augmentation](/workflows/deal-flow-augmentation) for first thread research replies.
+- [Deal prep briefs](/workflows/deal-prep-briefs) for context before a meeting.

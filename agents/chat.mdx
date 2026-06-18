@@ -1,0 +1,62 @@
+---
+title: "Chat with agents"
+description: "Use Thorin chat to work with personal agents, project agents, skills, and resources."
+---
+
+Chat is the fastest way to test an agent, run a skill, and inspect whether the agent has the context it needs.
+
+## Start a chat
+
+Open Home for your personal agent, or open a project workspace and launch chat with a project agent. New chats are tabbed so you can keep different threads separate.
+
+![Blank Thorin Home chat with a new chat tab and message composer.](/images/app/home-chat.png)
+
+When a conversation starts with one agent, keep that agent for the thread. If you need a different agent, start a new chat.
+
+## Compose with context
+
+Use chat controls to guide the agent:
+
+- Type `/` to invoke a skill.
+- Use skill starter examples when they appear.
+- Mention agents or resources with `@` when you want a specific context object.
+- Ask for a draft when an action should be reviewed before sending.
+- Ask the agent to create a work item when follow up should be tracked.
+
+## Examples
+
+```text
+Summarize the latest context on the Acme opportunity from Salesforce, Gong, and Slack.
+```
+
+```text
+/deal prep Create a call brief for my 3pm account call. Include open questions and next best actions.
+```
+
+```text
+Review the latest inbound deal email, classify it, and create follow up tasks for the owner.
+```
+
+```text
+What resources can you access for this project?
+```
+
+## Streaming and stopping
+
+Agent responses stream while the run is active. Stop a run if the agent is using the wrong context, taking the wrong path, or if you want to revise the prompt.
+
+## Session history
+
+Session history is the audit trail for chat and automation runs. Use it to inspect:
+
+- The prompt or event that started the run.
+- Which agent handled it.
+- Which skills or automations matched.
+- Which tools were called.
+- What output or work items were produced.
+
+For a deeper operating guide, see [Sessions and history](/agents/sessions-and-history).
+
+<Tip>
+  If an automation behaves unexpectedly, reproduce the task in chat first. Once the chat path is reliable, update the automation.
+</Tip>

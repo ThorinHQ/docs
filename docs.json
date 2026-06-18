@@ -1,73 +1,160 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Thorin",
+  "name": "Thorin Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0F766E",
+    "light": "#14B8A6",
+    "dark": "#115E59"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "pages": [
       {
-        "group": "Getting Started",
+        "group": "Overview",
         "pages": [
           "index",
-          "quickstart"
+          "product/what-is-thorin",
+          "product/core-primitives",
+          "product/key-concepts",
+          "product/projects-and-processes",
+          "product/form-factors",
+          "product/navigation",
+          "product/roadmap"
         ]
       },
       {
-        "group": "Concepts",
+        "group": "Getting started",
         "pages": [
-          "concepts/architecture",
-          "concepts/agents",
-          "concepts/switchboard"
+          "getting-started/admin-quickstart",
+          "getting-started/user-quickstart"
         ]
       },
       {
-        "group": "Features",
+        "group": "Agents",
         "pages": [
-          "features/skills",
-          "features/automations",
-          "features/work-items",
-          "features/library"
+          "agents/personal-agent",
+          "agents/project-agents",
+          "agents/topology",
+          "agents/capabilities-and-tools",
+          "agents/sessions-and-history",
+          "agents/chat"
+        ]
+      },
+      {
+        "group": "Skills",
+        "pages": [
+          "skills/overview",
+          "skills/create-skills"
+        ]
+      },
+      {
+        "group": "Automations",
+        "pages": [
+          "automations/overview",
+          "automations/schedules-and-triggers",
+          "workflows/work-tracking"
+        ]
+      },
+      {
+        "group": "Knowledge and data",
+        "pages": [
+          "resources/overview",
+          "resources/email-feeds-and-entities",
+          "resources/library-and-entities",
+          "resources/data-sources"
         ]
       },
       {
         "group": "Integrations",
         "pages": [
           "integrations/overview",
-          "integrations/connectors",
-          "integrations/mcps",
-          "integrations/personal-mcps"
+          "integrations/personal-mcps",
+          "integrations/mcp",
+          "integrations/slack",
+          "integrations/google-workspace",
+          "integrations/gong-salesforce-affinity",
+          "integrations/notion"
         ]
       },
       {
-        "group": "Administration",
+        "group": "Workflows",
+        "pages": [
+          "workflows/deal-flow",
+          "workflows/deal-flow-augmentation",
+          "workflows/deal-prep-briefs",
+          "workflows/switchboard"
+        ]
+      },
+      {
+        "group": "Admin and security",
         "pages": [
           "admin/onboarding",
-          "admin/trust-center",
-          "admin/email-access",
-          "admin/audit-logs"
+          "admin/security-and-permissions",
+          "admin/security-model",
+          "admin/users-roles-and-permissions",
+          "admin/email-access-and-compliance"
+        ]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          "reference/glossary",
+          "troubleshooting/common-issues"
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
+  "redirects": [
+    {
+      "source": "/quickstart",
+      "destination": "/getting-started/user-quickstart"
+    },
+    {
+      "source": "/thorin/customer-onboarding",
+      "destination": "/admin/onboarding"
+    },
+    {
+      "source": "/thorin/customer-onboarding/workos",
+      "destination": "/admin/onboarding"
+    },
+    {
+      "source": "/thorin/customer-onboarding/customer-admin-note",
+      "destination": "/admin/security-and-permissions"
+    },
+    {
+      "source": "/thorin/customer-onboarding/integrations",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/thorin/customer-onboarding/integrations/api",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/thorin/customer-onboarding/integrations/mcp",
+      "destination": "/integrations/mcp"
+    },
+    {
+      "source": "/thorin/customer-onboarding/integrations/security-note/notion",
+      "destination": "/integrations/notion"
+    },
+    {
+      "source": "/thorin/customer-onboarding/integrations/security-note/slack",
+      "destination": "/integrations/slack"
+    },
+    {
+      "source": "/thorin/customer-onboarding/thorin-permissions",
+      "destination": "/admin/security-and-permissions"
+    },
+    {
+      "source": "/thorin/customer-onboarding/thorin-permissions/domain-wide-delegation",
+      "destination": "/integrations/google-workspace"
+    },
+    {
+      "source": "/thorin/customer-onboarding/thorin-permissions/oauth",
+      "destination": "/integrations/google-workspace"
+    }
+  ],
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -75,14 +162,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "GitHub",
+        "href": "https://github.com/ThorinHQ/docs"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "label": "Open Thorin",
+      "href": "https://app.thorin.com"
     }
   },
   "contextual": {
@@ -99,9 +186,7 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/ThorinHQ"
     }
   }
 }

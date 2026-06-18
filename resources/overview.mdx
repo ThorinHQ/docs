@@ -1,0 +1,44 @@
+---
+title: "Knowledge and resources"
+description: "Give Thorin agents the context and tools they need without too broad access."
+---
+
+Resources are the durable context and tool handles that agents can use. They are how Thorin connects an agent to project files, data feeds, external systems, structured entities, and communication channels.
+
+## Resource types
+
+Common resource types include:
+
+- Text files and folders.
+- Databases and entity tables.
+- Email inboxes and derived email feeds.
+- Google Drive sources and derived Drive feeds.
+- Gong sources and meeting transcript feeds.
+- MCP server connections.
+- Calendar and other integration backed pointers.
+
+## Resources vs data sources
+
+Resources are what agents see and use. Data sources are connected systems that produce or expose resources.
+
+For example, a Google Drive connection can produce a Drive source resource. A datasource manager can then create derived feeds that focus the agent on a subset of files.
+
+For email, the raw inbox is not the final product object. The useful product object is usually a derived feed that has passed inbox eligibility, deny rules, feed matching, optional redaction, and resource grants. See [Email feeds and entities](/resources/email-feeds-and-entities).
+
+## Access rules
+
+Agents need explicit access to resources. Do not assume that project membership or admin status should grant every agent access to every resource.
+
+Use resource grants to keep workflows scoped:
+
+- A deal flow agent should access deal inbox feeds, deal databases, and the deal SOP.
+- A prep brief agent should access CRM, Gong transcripts, Notion battlecards, and relevant account context.
+- A Switchboard agent should access routebook, contacts, and inbox routing state.
+
+## Resource hygiene
+
+- Name resources by business meaning, not implementation detail.
+- Keep operating instructions in files the agent can read.
+- Separate raw sources from filtered feeds.
+- Remove resources when a workflow no longer needs them.
+- Review resource access before enabling automations.

@@ -1,0 +1,76 @@
+---
+title: "Personal agents"
+description: "How Thorin personal agents work, what they can access, and when to use them."
+---
+
+Every Thorin user has a personal agent. It acts as your delegate inside Thorin. It can help with your own messages, tasks, connected tools, skills, and allowed resources.
+
+## What a personal agent is for
+
+Use your personal agent for work that is tied to you:
+
+- Summarizing your email, Slack, meetings, or connected resources.
+- Drafting replies, updates, memos, and follow up.
+- Finding context across tools you can access.
+- Creating reminders and work items for yourself or collaborators.
+- Testing a workflow before turning it into a shared project agent.
+- Using personal or user scoped MCP connections.
+
+## Access and permissions
+
+Your personal agent should be treated as an extension of you. It should not have more access than you have. When it uses a connected service, the connection is either user scoped or explicitly granted by the organization.
+
+Admins can install organization level connectors, but users still often need to authorize their own account before the personal agent can use that connector on their behalf.
+
+Your personal agent is also different from an organization wide agent. It can help with private work because it is scoped to you. If something from your private context should help a shared workflow, Thorin should lift that context through an approved feed, entity, work item, or project resource rather than exposing your whole private stream.
+
+## Set up
+
+<Steps>
+  <Step title="Open Home">
+    Go to Home to chat with your personal agent.
+  </Step>
+  <Step title="Review Settings">
+    Confirm your timezone, inbox watch setting, notification preferences, and privacy filters.
+  </Step>
+  <Step title="Connect integrations">
+    Use Settings, then Integrations for user scoped MCP connections that your admin has made available.
+  </Step>
+  <Step title="Install skills">
+    Use Skills to install or fork behaviors you want your personal agent to use often.
+  </Step>
+</Steps>
+
+## Best practices
+
+- Be explicit about the source you want the agent to use: email, Slack, Drive, Gong, Salesforce, Affinity, Notion, or a specific resource.
+- Ask for a draft when you want to review before sending.
+- Ask the agent to create work items when follow up should be tracked.
+- Convert repeated personal prompts into skills.
+- Move shared or recurring workflows into a project agent once other people need visibility.
+
+## Roadmap: persistent personal history
+
+Personal agents are expected to move toward OpenClaw style persistent history. The goal is for your personal agent to build durable context across sessions: preferences, recurring obligations, prior corrections, installed skills, useful resources, and the routines you keep asking it to perform.
+
+This is a roadmap direction, not a promise that every workspace has this behavior today. The current stable model is still user scoped delegation: your personal agent acts with your allowed context and connected tools.
+
+As persistent history matures, expect personal agents to become better at:
+
+- Remembering how you prefer briefs, drafts, and summaries.
+- Reusing context from prior chats without repeated setup.
+- Understanding which routines should run periodically.
+- Knowing when to ask before acting.
+- Promoting a personal routine into a shared project workflow when other people need visibility.
+
+See [Roadmap and WIP](/product/roadmap) for more detail.
+
+## Form factors
+
+Personal agents can be useful outside web chat. Depending on workspace configuration, your agent can respond through Slack or SMS, draft email, send approved Thorin email, or run automations from reminders and schedules.
+
+See [Form factors](/product/form-factors) for channel behavior and the current discussion around how replies to agents should route in the future.
+
+## When not to use a personal agent
+
+Do not use a personal agent as the owner of a team critical workflow that needs shared review, project resources, scheduled execution, or stable ownership independent of one user. Create a project agent instead.

@@ -1,0 +1,61 @@
+---
+title: "Gong, Salesforce, and Affinity"
+description: "Connect revenue and deal systems for account, call, and deal workflows."
+---
+
+Gong, Salesforce, and Affinity are common inputs for deal flow and account workflows. Together they let agents combine conversations, CRM state, company information, relationship context, and next step history.
+
+## Gong
+
+Admins connect Gong with an access key and access key secret. Thorin validates the credentials and creates a Gong source resource.
+
+Agents can search transcript data and read full call transcripts when granted access. This supports:
+
+- Call summaries.
+- Deal prep briefs.
+- Quote extraction.
+- Follow up generation.
+- Opportunity timeline reconstruction.
+
+## Salesforce
+
+Thorin supports native Salesforce credentials and Salesforce Hosted MCP patterns, depending on workspace setup.
+
+Native Salesforce setup commonly requires:
+
+- Consumer key.
+- Consumer secret.
+- My Domain.
+- Sandbox flag when applicable.
+- API version.
+
+Agents with Salesforce capability can look up accounts, contacts, opportunities, call records, opportunity history, and timelines when credentials are configured.
+
+## Affinity
+
+Admins connect Affinity with an organization API key. Agents can use Affinity to resolve:
+
+- Deal status.
+- Organization information.
+- Relationship strength.
+
+Affinity is useful as a secondary source when email or internal data is ambiguous, but it may lag behind live inbox context.
+
+## Common combined workflow
+
+For a deal or account prep workflow, an agent might:
+
+1. Identify the account or opportunity.
+2. Read Salesforce state and recent opportunity history.
+3. Search Gong calls for recent conversations and objections.
+4. Check Affinity relationship strength or deal status.
+5. Read Notion or Drive battlecards.
+6. Produce a concise brief, open questions, and recommended next actions.
+
+## Caveats
+
+- Gong and Salesforce metadata may not always reflect call time truth.
+- Recent or internal only calls may not be synced.
+- CRM fields can be incomplete or stale.
+- Affinity should not override fresher email or direct customer context without explanation.
+- Sensitive actions should create drafts or work items for review before sending.
