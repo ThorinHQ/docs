@@ -44,6 +44,35 @@ Read-only access to Salesforce records — accounts, opportunities, contacts —
   If you also want Salesforce write access through MCP, install the **Salesforce** entry from the [MCP catalog](/integrations/mcps#add-from-the-catalog) alongside the first-party connector.
 </Tip>
 
+## Email Agent
+
+Designates a single tenant mailbox that Thorin is allowed to send email **as** on behalf of the personal email agent. Once configured, your users can email that address to work with their Thorin agent, and replies are sent from the same address.
+
+Use a dedicated mailbox for this (for example, `thorin@your-domain.com`) — not an individual teammate's personal inbox.
+
+- **Where to configure:** Admin → Integrations → Email Agent.
+- **Prerequisites:**
+  - The mailbox address must be on your organization's domain (the same domain as the admin designating it). Thorin rejects addresses on any other domain.
+  - Thorin must already have **domain-wide delegation** access to send as that mailbox. Designation runs a read-only Gmail probe against the address before saving; if delegation isn't granted, the designation is refused and nothing is persisted.
+- **One per tenant:** only one active email agent service account exists at a time. Designating a new address replaces the previous one.
+- **Auth:** Google Workspace domain-wide delegation, set up alongside the other [mail-access options](/admin/onboarding) during onboarding.
+
+### Designate the mailbox
+
+1. Open **Admin → Integrations** and find the **Email Agent** card.
+2. Click **Designate** and enter the mailbox address (for example, `thorin@your-domain.com`).
+3. Confirm the authorization prompt — Thorin will be able to send email as this address on behalf of your users.
+
+If the access probe fails (Thorin doesn't have permission to act as the address), the dialog surfaces an error and no service account is saved.
+
+### Remove the mailbox
+
+From the **Email Agent** card, click **Remove** and confirm. Thorin will stop sending email as that address immediately. You can designate a new mailbox at any time.
+
+<Tip>
+  Designation and removal are both recorded in [audit logs](/admin/audit-logs) under the integration's resource type, including the actor and the affected address.
+</Tip>
+
 ## Slack
 
 Lets agents post to Slack channels, read recent context, and respond when mentioned.
