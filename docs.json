@@ -39,7 +39,6 @@
         "pages": [
           "integrations/overview",
           "integrations/connectors",
-          "integrations/mcps",
           "integrations/personal-mcps"
         ]
       },
