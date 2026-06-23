@@ -17,7 +17,12 @@ Use a personal MCP when you want to give your agent access to a service that:
 
 ## Where to find it
 
-Personal MCPs are managed from the **chat composer**. Open any chat with your personal agent and click the **+** icon to the left of the message input. The dropdown's **Connectors** item opens a dialog that lists your connected servers and the available presets.
+Personal MCPs are managed from the **chat composer**. Open any chat with your personal agent and click the **+** icon to the left of the message input. The menu has two submenus:
+
+- **Skills** — pick a skill to run or open **Manage skills**.
+- **Connectors** — opens straight into your connector list, with **Manage connectors** at the top and each of your installed servers underneath. Click **Manage connectors** (or a row that needs attention) to open the connectors dialog.
+
+The connectors dialog is where you add new servers, sign in, reconnect, and remove connectors.
 
 <Note>
   MCP management is no longer on the **Settings** page or the personal agent's **Resources** list. If you were linking there, update the link to the chat composer.
@@ -25,11 +30,11 @@ Personal MCPs are managed from the **chat composer**. Open any chat with your pe
 
 ## Add a connector
 
-The connectors dialog ships with one-click presets for the servers most people add first — Notion, Linear, GitHub, Granola, Sentry, HubSpot, Figma, and Salesforce. Each preset has a prefilled name, URL, and logo.
+The connectors dialog ships with one-click presets for common servers. The current presets are **Granola**, **Notion**, **Linear**, **Sentry**, and **Figma**. Each preset has a prefilled name, URL, and logo.
 
 <Steps>
   <Step title="Open the connectors dialog">
-    In a chat with your personal agent, click the **+** icon next to the message input and choose **Connectors**.
+    In a chat with your personal agent, click the **+** icon next to the message input, hover **Connectors**, and choose **Manage connectors**.
   </Step>
   <Step title="Pick a preset">
     Click any tile under **Add a connector**. Thorin creates the personal MCP and, if the server supports OAuth, redirects you to sign in.
@@ -41,11 +46,11 @@ The connectors dialog ships with one-click presets for the servers most people a
 
 ## Add a custom server
 
-For anything outside the presets, add the MCP server by URL.
+For anything outside the presets — including services like GitHub, HubSpot, or Salesforce that no longer ship as built-in presets — add the MCP server by URL.
 
 <Steps>
   <Step title="Open the connectors dialog">
-    Click the **+** icon in the chat composer and choose **Connectors**.
+    Click the **+** icon in the chat composer, hover **Connectors**, and choose **Manage connectors**.
   </Step>
   <Step title="Choose Custom">
     Click the **Custom** tile under **Add a connector**. A second dialog opens asking for a name and the server URL.
@@ -95,14 +100,17 @@ Thorin uses the token directly as a bearer credential when calling the server. I
 
 ## Manage your connectors
 
-The **Your connectors** section at the top of the dialog lists every personal MCP you've added, along with its current status:
+Your installed connectors show up in two places:
 
-| Status | Meaning |
-| --- | --- |
-| **Connected** | The agent can call this server right now. |
-| **Expired** | OAuth token expired — click **Reconnect**. |
-| **Error** | Last call failed — click **Reconnect** or remove the server. |
-| **Not connected** | The server is added but not authorized yet — click **Sign in**. |
+- **Inline in the + menu** — under **Connectors**, each row shows the server's logo, name, and a status icon (a checkmark for **Connected**, a warning for **Expired** or **Error**). Click an unhealthy row to jump back into the OAuth flow.
+- **In the connectors dialog** — the **Your connectors** section lists every personal MCP you've added with a status badge:
+
+  | Status | Meaning |
+  | --- | --- |
+  | **Connected** | The agent can call this server right now. |
+  | **Expired** | OAuth token expired — click **Reconnect**. |
+  | **Error** | Last call failed — click **Reconnect** or remove the server. |
+  | **Not connected** | The server is added but not authorized yet — click **Sign in**. |
 
 Use the trash icon on any row to remove the connector. Removing the server also revokes the connection. You can only manage personal MCPs that you own.
 
