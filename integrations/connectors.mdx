@@ -46,7 +46,7 @@ Read-only access to Salesforce records — accounts, opportunities, contacts —
 
 ## Email Agent
 
-Designates a single tenant mailbox that Thorin is allowed to send email **as** on behalf of the personal email agent. Once configured, your users can email that address to work with their Thorin agent, and replies are sent from the same address.
+Designates a single tenant mailbox that Thorin is allowed to send email **as** on behalf of users' personal agents. Once configured, anyone in your tenant can email — or CC — that address from any thread to reach their own personal agent, and Thorin replies from the same address, threaded under the original message.
 
 Use a dedicated mailbox for this (for example, `thorin@your-domain.com`) — not an individual teammate's personal inbox.
 
@@ -65,12 +65,28 @@ Use a dedicated mailbox for this (for example, `thorin@your-domain.com`) — not
 
 If the access probe fails (Thorin doesn't have permission to act as the address), the dialog surfaces an error and no service account is saved.
 
+### How users reach their agent
+
+Once a mailbox is designated, any user in the tenant can reach their [personal agent](/concepts/agents) by:
+
+- Sending a new email to the service account address with their question in the subject or body.
+- Adding the service account address to the `To` or `Cc` line of an existing thread when they want their agent involved.
+
+Thorin replies from the service account address, threaded under the user's message. Each reply runs the sender's own personal agent with that user's allowed context, integrations, and skills — a teammate CC'ing the service account on your thread does not give them access to your agent.
+
+To continue a conversation, the user keeps replying on the thread. Thorin resumes the same agent session, reads only the messages added since its last reply, and answers in line. The session is reused across turns so the agent doesn't lose context between replies.
+
+The channel is **tenant scoped**:
+
+- Only senders who are members of your Thorin tenant trigger a response. Messages from external senders, and messages sent from the service account mailbox itself, are ignored.
+- Every inbound message — subject, body, and quoted thread — is scanned for prompt-injection content before being passed to the agent.
+
 ### Remove the mailbox
 
 From the **Email Agent** card, click **Remove** and confirm. Thorin will stop sending email as that address immediately. You can designate a new mailbox at any time.
 
 <Tip>
-  Designation and removal are both recorded in [audit logs](/admin/audit-logs) under the integration's resource type, including the actor and the affected address.
+  Designation, removal, and every reply Thorin sends through the channel are recorded in [audit logs](/admin/audit-logs) under the integration's resource type — including the actor, the affected address, and the thread the reply belongs to.
 </Tip>
 
 ## Slack
